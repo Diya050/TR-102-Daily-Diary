@@ -33,4 +33,15 @@
 - Broadcasting Iteration
 - Enumerated Iteration Using ndenumerate()
 - numpy.logspace
-- Joining arrays(concatenate(), stack(), hstack(), vstack())
+- Joining Arrays(concatenate(), stack(), hstack(), vstack())
+
+## 12th June 2024
+
+- Joining Arrays(dstack())
+- Splitting NumPy Arrays(array_split())
+- Searching Arrays(where(), searchsorted())
+- Sorting Arrays
+- Filtering Arrays
+- Adding / Removing Elements
+      - numpy.resize()
+      - numpy.append()
