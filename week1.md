@@ -42,6 +42,4 @@
 - Searching Arrays(where(), searchsorted())
 - Sorting Arrays
 - Filtering Arrays
-- Adding / Removing Elements
-      - numpy.resize()
-      - numpy.append()
+- Adding / Removing Elements(numpy.resize(), numpy.append())
