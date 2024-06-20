@@ -24,6 +24,25 @@
 - Python Pandas DataFrame
 - Create an Empty DataFrame, a DataFrame from Lists, a DataFrame from Dict of ndarrays / Lists, a DataFrame from List of Dicts and a DataFrame from Dict of Series
 - Column Selection, Addition and Deletion
+
+
+## 15th June 2024
+
+- Pandas Series.to_frame()
 - Row Selection, Addition, and Deletion
 - Selection by Label and by by integer location
 - Slice Rows
+- Pandas Series.value_counts()
+- Pandas DataFrame.append()
+- Pandas DataFrame.aggregate()
+
+## 17th June 2024
+
+- Pandas DataFrame.assign()
+- Pandas DataFrame.count()
+- Pandas DataFrame.drop_duplicates()
+- Pandas DataFrame.apply()
+- Pandas.groupby() Function
+- Pandas DataFrame.head()
+- Pandas DataFrame.iterrows()
+- Pandas Join(inner, outer, left, right)
