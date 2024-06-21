@@ -46,3 +46,14 @@
 - Pandas DataFrame.head()
 - Pandas DataFrame.iterrows()
 - Pandas Join(inner, outer, left, right)
+
+## 21st June 2024
+
+- Pandas DataFrame.mean()
+- Pandas DataFrame.merge()
+- Pandas Dataframe.Query() Method
+- Pandas DataFrame.rename()
+- Dataframe.Sample() Function
+- DataFrame.sort()
+- DataFrame.transpose()
+
