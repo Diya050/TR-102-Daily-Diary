@@ -1,6 +1,6 @@
 # Daily Diary: Week 1
 
-## Day 1: 16th June 2024
+## Day 1
 
 - ### Overview of NumPy:
 
@@ -143,7 +143,7 @@ print(arr[0:2, 2])  # [3 8]
 
 ```
 
-## 7th June 2024
+## Day 2
 
 - NumPy Data Types
 - Structured Arrays
@@ -153,7 +153,7 @@ print(arr[0:2, 2])  # [3 8]
 - NumPy - Arithmetic Operations
 
 
-## 10th June 2024
+## Day 3
 
 - NumPy - Array From Existing Data(asarray, frombuffer, fromiter)
 - NumPy - Array From Numerical Ranges(arange, linspace)
@@ -161,7 +161,7 @@ print(arr[0:2, 2])  # [3 8]
 - numpy.nditer function(order)
 
 
-## 11th June 2024
+## Day 4
 
 - numpy.nditer function(op_flags, flags, external_loop)
 - Broadcasting Iteration
@@ -170,7 +170,7 @@ print(arr[0:2, 2])  # [3 8]
 - Random Function(randint, rand, randn)
 - Joining Arrays(concatenate(), stack(), hstack(), vstack())
 
-## 12th June 2024
+## Day 5
 
 - Joining Arrays(dstack())
 - Splitting NumPy Arrays(array_split())
@@ -179,7 +179,7 @@ print(arr[0:2, 2])  # [3 8]
 - Filtering Arrays
 - Adding / Removing Elements(numpy.resize(), numpy.append())
 
-## 13th June 2024
+## Day 6
 
 - Adding / Removing Elements(numpy.insert(), numpy.delete())
 - NumPy Broadcasting(Arithmetic Operations)
