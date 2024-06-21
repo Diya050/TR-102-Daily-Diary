@@ -96,7 +96,9 @@ print(arr)
   [4 5 6]]]
 """
 print(arr.ndim)  # 3
+
 ```
+
   - **Higher Dimensional Arrays**:
 ```python
 import numpy as np
