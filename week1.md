@@ -19,7 +19,7 @@
 - NumPy - Arithmetic Operations
 
 
-## 8th June 2024
+## 10th June 2024
 
 - NumPy - Array From Existing Data(asarray, frombuffer, fromiter)
 - NumPy - Array From Numerical Ranges(arange, linspace)
@@ -27,7 +27,7 @@
 - numpy.nditer function(order)
 
 
-## 10th June 2024
+## 11th June 2024
 
 - numpy.nditer function(op_flags, flags, external_loop)
 - Broadcasting Iteration
@@ -36,7 +36,7 @@
 - Random Function(randint, rand, randn)
 - Joining Arrays(concatenate(), stack(), hstack(), vstack())
 
-## 11th June 2024
+## 12th June 2024
 
 - Joining Arrays(dstack())
 - Splitting NumPy Arrays(array_split())
@@ -45,7 +45,7 @@
 - Filtering Arrays
 - Adding / Removing Elements(numpy.resize(), numpy.append())
 
-## 12th June 2024
+## 13th June 2024
 
 - Adding / Removing Elements(numpy.insert(), numpy.delete())
 - NumPy Broadcasting(Arithmetic Operations)
