@@ -47,7 +47,7 @@
 - Pandas DataFrame.iterrows()
 - Pandas Join(inner, outer, left, right)
 
-## 21st June 2024
+## Day 11
 
 - Pandas DataFrame.mean()
 - Pandas DataFrame.merge()
