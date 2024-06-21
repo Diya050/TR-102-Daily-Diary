@@ -83,7 +83,7 @@ print(arr)
 """
 print(arr.ndim)  # 2 
 ```
-  - **3-D Arrays:** An array that has 2-D arrays (matrices) as its elements is called 3-D array.
+  - **3-D Arrays:** An array that has 2-D arrays (matrices) as its elements is called 3-D array.<br>
 ```python
 import numpy as np
 arr = np.array([[[1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6]]])
