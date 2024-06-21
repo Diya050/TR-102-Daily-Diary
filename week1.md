@@ -56,9 +56,92 @@ print(arr1)  # ['a' 'b' 'c']
 print(type(arr1))  # <class 'numpy.ndarray'>
 ```
 
+- ### Dimensions in Arrays
+
+  - **0-D Arrays:** 0-D arrays, or Scalars, are the elements in an array. Each value in an array is a 0-D array.
+```python
+import numpy as np
+arr = np.array(42)
+print(arr)  # 42
+print(arr.ndim)  # 0
+```
+  - **1-D Arrays:** An array that has 0-D arrays as its elements is called uni-dimensional or 1-D array.
+```python
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)  # [1 2 3 4 5]
+print(arr.ndim)  # 1
+```
+  - **2-D Arrays:** An array that has 1-D arrays as its elements is called 2-D array.
+```python
+import numpy as np
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr)
+"""
+[[1 2 3]
+ [4 5 6]]
+"""
+print(arr.ndim)  # 2 
+```
+  - **3-D Arrays:** An array that has 2-D arrays (matrices) as its elements is called 3-D array.
+
+```python
+import numpy as np
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6]]])
+print(arr)
+"""
+[[[1 2 3]
+  [4 5 6]]
+
+ [[1 2 3]
+  [4 5 6]]]
+"""
+print(arr.ndim)  # 3
+```
+  - **Higher Dimensional Arrays**:
+```python
+import numpy as np
+arr = np.array([1, 2, 3, 4], ndmin=5)
+print(arr)
+print('number of dimensions :', arr.ndim)
+```
+
 - NumPy Array Indexing
+
+```python
+import numpy as np
+arr = np.array([1, 2, 3, 4])
+print(arr[2] + arr[3])  # 7
+
+arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+print('2nd element on 1st dim: ', arr[0, 1])  # 2
+
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+print(arr[0, 1, 2])  # 6
+
+arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+print('Last element from 2nd dim: ', arr[1, -1])  # 10
+```
 - NumPy Array Slicing
 
+```python
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+print(arr[1:5:2])  # [2 4]
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+print(arr[4:])  # [5 6 7]
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+print(arr[:4])  # [1 2 3 4]
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+print(arr[1, 1:4])  # [7 8 9]
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+print(arr[0:2, 2])  # [3 8]
+
+```
 
 ## 7th June 2024
 
