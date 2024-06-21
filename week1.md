@@ -106,7 +106,7 @@ print(arr)
 print('number of dimensions :', arr.ndim)
 ```
 
-- NumPy Array Indexing
+- ### NumPy Array Indexing
 
 ```python
 import numpy as np
@@ -122,7 +122,7 @@ print(arr[0, 1, 2])  # 6
 arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
 print('Last element from 2nd dim: ', arr[1, -1])  # 10
 ```
-- NumPy Array Slicing
+- ### NumPy Array Slicing
 
 ```python
 import numpy as np
