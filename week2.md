@@ -1,6 +1,6 @@
 # Daily Dairy: Week 2
 
-## 14th June 2024
+## Day 7
 
 - Rounding Functions(numpy.around(), numpy.floor(), numpy.ceil())
 - NumPy Matrix Library- numpy.matlib(zeros(), empty(), ones(), eye(), identity(), rand())
@@ -12,7 +12,7 @@
 - Installing Pandas
 - Series Data Structure(introduction and indexing)
 
-## 17th June 2024
+## Day 8
 
 - Create a Series from dict
 - Accessing Data from Series with Position
@@ -26,7 +26,7 @@
 - Column Selection, Addition and Deletion
 
 
-## 19th June 2024
+## Day 9
 
 - Pandas Series.to_frame()
 - Row Selection, Addition, and Deletion
@@ -36,7 +36,7 @@
 - Pandas DataFrame.append()
 - Pandas DataFrame.aggregate()
 
-## 20th June 2024
+## Day 10
 
 - Pandas DataFrame.assign()
 - Pandas DataFrame.count()
