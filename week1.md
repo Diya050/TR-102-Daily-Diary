@@ -137,12 +137,119 @@ print(arr[0:2, 2])  # [3 8]
 
 ## Day 2
 
-- NumPy Data Types
-- Structured Arrays
-- NumPy - Array Attributes(shape, reshape, itemsize, ndim)
-- NumPy - Array Creation Routines(empty, ones, zeros, full, eye)
-- NumPy Array Copy vs View
-- NumPy - Arithmetic Operations
+- ### NumPy Data Types
+**Checking the Data Type of an Array:** The NumPy array object has a property called dtype that returns the data type of the array:
+```python
+import numpy as np
+# checking datatype of array
+arr = np.array([1, 2, 3, 4])
+print(arr.dtype)  # int64
+
+arr1=np.array(['apple', 'banana', 'cherry'])
+print(arr1.dtype)  # <U6
+
+# defining datatype
+dt = np.dtype('i4')
+print(dt)  # int32
+
+dt = np.dtype(np.int32)
+print(dt)  # int32
+```
+
+- ### Structured Arrays
+```python
+import numpy as np
+
+# defining data type object
+dt = np.dtype([('name', '<U10'), ('age', 'i1'), ('salary', 'f4')])
+
+# creating structured array
+employee = np.array([('Sonal', 28, 30000.5), ('Jay', 30, 25000.0), ('Diya', 25, 100000.0)], dtype = dt)
+
+print(employee)  # [('Sonal', 28,  30000.5) ('Jay', 30,  25000. ) ('Diya', 25, 100000. )]
+print(employee['name'])  # ['Sonal' 'Jay' 'Diya']
+```
+
+- ### NumPy - Array Attributes(shape, reshape, itemsize, ndim)
+```python
+import numpy as np
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+print(arr.shape)  # (2,4)
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+newarr = arr.reshape(4, 3)
+print(newarr)
+
+# dtype of array is int8 (1 byte)
+import numpy as np
+x = np.array([1,2,3,4,5], dtype = np.int8)
+print (x.itemsize)
+
+import numpy as np
+arr = np.array([1, 2, 3, 4], ndmin=5)
+print(arr)  # [[[[[1 2 3 4]]]]]
+print(arr.ndim)  # 5
+```
+`Note:` Reshape function when tested using base attribute returns the original array, so it is a view.
+
+- ### Flattening the arrays
+```python
+import numpy as np
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+newarr = arr.reshape(-1)
+print(newarr)
+```
+- ### NumPy - Array Creation Routines(empty, ones, zeros, full, eye)
+
+```python
+import numpy as np
+arr = np.empty((3,2), dtype = int)
+print(arr)
+```
+
+- ### NumPy Array Copy vs View
+The main difference between a copy and a view of an array is that the copy is a new array, and the
+view is just a view of the original array. The copy owns the data and any changes made to the copy
+will not affect original array, and any changes made to the original array will not affect the copy. The
+view does not own the data and any changes made to the view will affect the original array, and any
+changes made to the original array will affect the view.
+
+Every NumPy array has the attribute base that returns None if the array owns the data.
+Otherwise, the base attribute refers to the original object.
+
+```python
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.copy()
+y = arr.view()
+print(x.base)  # None (copy)
+print(y.base)  # [1  2  3  4  5] (view)
+arr[0] = 15
+print(x)  # [1  2  3  4  5] (copy)
+print(y)  # [15  2  3  4  5] (view)
+```
+
+- ### NumPy - Arithmetic Operations
+
+```python
+import numpy as np
+x = np.array([[1,2],[3,4]], dtype=np.float64)
+y = np.array([[5,6],[7,8]], dtype=np.float64)
+
+# print(x + y)
+print(np.add(x, y))
+
+# print(x - y)
+print(np.subtract(x, y))
+
+# print(x * y)
+print(np.multiply(x, y))
+
+# print(x / y)
+print(np.divide(x, y))
+
+print(np.sqrt(x))
+```
 
 
 ## Day 3
@@ -162,6 +269,7 @@ print(arr[0:2, 2])  # [3 8]
 - Random Function(randint, rand, randn)
 - Joining Arrays(concatenate(), stack(), hstack(), vstack())
 
+
 ## Day 5
 
 - Joining Arrays(dstack())
@@ -171,9 +279,23 @@ print(arr[0:2, 2])  # [3 8]
 - Filtering Arrays
 - Adding / Removing Elements(numpy.resize(), numpy.append())
 
+
 ## Day 6
 
 - Adding / Removing Elements(numpy.insert(), numpy.delete())
 - NumPy Broadcasting(Arithmetic Operations)
 - NumPy String Functions(add(), multiply(), center(), capitalize(), title(), lower(), upper(), strip(), split(), splitlines(), join(), replace(), encode(), decode())
 - Trigonometric functions(sin, cos, tan, arcsin, arccos, arctan, degrees)
+
+
+## Day 7
+
+- Rounding Functions(numpy.around(), numpy.floor(), numpy.ceil())
+- NumPy Matrix Library- numpy.matlib(zeros(), empty(), ones(), eye(), identity(), rand())
+- NumPy Linear Algebra- numpy.linalg(numpy.dot(), numpy.vdot(), numpy.inner(), numpy.matmul(), numpy.linalg.det())
+- NumPy Matrix Multiplication(numpy.multiply(), numpy.matmul())
+- 'numpy.unique' function
+- 'numpy.mean()' function
+- Overview of Pandas and it's importance in Data Analysis
+- Installing Pandas
+- Series Data Structure(introduction and indexing)
