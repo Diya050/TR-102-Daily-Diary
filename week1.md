@@ -205,17 +205,27 @@ print(newarr)
 import numpy as np
 arr = np.empty((3,2), dtype = int)
 print(arr)
+
+arr = np.ones((3,3), dtype = int)
+print(arr)
+
+arr = np.zeros((3,3), dtype = float)
+print(arr)
+
+arr = np.identity(3, dtype=int)
+print(arr)
+
+arr = np.full((2,3),20, dtype = int)
+print(arr)
+
+arr = np.eye(8, 7, k=1)
+print(arr)
 ```
 
 - ### NumPy Array Copy vs View
-The main difference between a copy and a view of an array is that the copy is a new array, and the
-view is just a view of the original array. The copy owns the data and any changes made to the copy
-will not affect original array, and any changes made to the original array will not affect the copy. The
-view does not own the data and any changes made to the view will affect the original array, and any
-changes made to the original array will affect the view.
+The main difference between a copy and a view of an array is that the copy is a new array, and the view is just a view of the original array. The copy owns the data and any changes made to the copy will not affect original array, and any changes made to the original array will not affect the copy. The view does not own the data and any changes made to the view will affect the original array, and any changes made to the original array will affect the view.
 
-Every NumPy array has the attribute base that returns None if the array owns the data.
-Otherwise, the base attribute refers to the original object.
+Every NumPy array has the attribute base that returns None if the array owns the data. Otherwise, the base attribute refers to the original object.
 
 ```python
 import numpy as np
