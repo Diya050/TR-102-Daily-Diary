@@ -138,7 +138,7 @@ print(arr[0:2, 2])  # [3 8]
 ## Day 2
 
 - ### NumPy Data Types
-**Checking the Data Type of an Array:** The NumPy array object has a property called dtype that returns the data type of the array:
+    **Checking the Data Type of an Array:** The NumPy array object has a property called dtype that returns the data type of the array:
 ```python
 import numpy as np
 # checking datatype of array
@@ -157,6 +157,7 @@ print(dt)  # int32
 ```
 
 - ### Structured Arrays
+
 ```python
 import numpy as np
 
@@ -171,6 +172,7 @@ print(employee['name'])  # ['Sonal' 'Jay' 'Diya']
 ```
 
 - ### NumPy - Array Attributes(shape, reshape, itemsize, ndim)
+
 ```python
 import numpy as np
 arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
@@ -193,6 +195,7 @@ print(arr.ndim)  # 5
 `Note:` Reshape function when tested using base attribute returns the original array, so it is a view.
 
 - ### Flattening the arrays
+
 ```python
 import numpy as np
 arr = np.array([[1, 2, 3], [4, 5, 6]])
@@ -223,9 +226,7 @@ print(arr)
 ```
 
 - ### NumPy Array Copy vs View
-The main difference between a copy and a view of an array is that the copy is a new array, and the view is just a view of the original array. The copy owns the data and any changes made to the copy will not affect original array, and any changes made to the original array will not affect the copy. The view does not own the data and any changes made to the view will affect the original array, and any changes made to the original array will affect the view.
-
-Every NumPy array has the attribute base that returns None if the array owns the data. Otherwise, the base attribute refers to the original object.
+The main difference between a copy and a view of an array is that the copy is a new array, and the view is just a view of the original array. The copy owns the data and any changes made to the copy will not affect original array, and any changes made to the original array will not affect the copy. The view does not own the data and any changes made to the view will affect the original array, and any changes made to the original array will affect the view. Every NumPy array has the attribute base that returns None if the array owns the data. Otherwise, the base attribute refers to the original object.
 
 ```python
 import numpy as np
