@@ -138,17 +138,17 @@ print(arr[0:2, 2])  # [3 8]
 ## Day 2
 
 - ### NumPy Data Types
-    **Checking the Data Type of an Array:** The NumPy array object has a property called dtype that returns the data type of the array:
+
 ```python
+
 import numpy as np
-# checking datatype of array
+
 arr = np.array([1, 2, 3, 4])
 print(arr.dtype)  # int64
 
 arr1=np.array(['apple', 'banana', 'cherry'])
 print(arr1.dtype)  # <U6
 
-# defining datatype
 dt = np.dtype('i4')
 print(dt)  # int32
 
