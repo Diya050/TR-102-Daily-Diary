@@ -292,13 +292,126 @@ print(x) # [0. 1. 2. 3. 4.]
 ```
 
 - ### NumPy - Array From Numerical Ranges(arange, linspace)
+     - **Numpy.arange Function:** The Numpy arange function (sometimes called np.arange) is a tool for creating numeric sequences in Python. The NumPy arange function returns evenly spaced numeric values within an interval, stored as a NumPy array (i.e., an ndarray object). There are 4 parameters that we can modify:
+        - start
+        - stop
+        - step
+        - dtype
+     - **Numpy.linspace Function:** The NumPy linspace function (sometimes called np.linspace) is a tool in Python for creating numeric
+sequences. It’s somewhat similar to the NumPy arange function, in that it creates sequences of
+evenly spaced numbers structured as a NumPy array.
+        - start
+        - stop
+        - number of values
+        - endpoint
+        - return step value(retstep)
+
+```python
+import numpy as np
+
+print(np.arange(1, 10, 2, dtype=float))  # [1. 3. 5. 7. 9.]
+
+print(np.linspace(1,100, num=4, endpoint=False, retstep=True))  # (array([ 1.  , 25.75, 50.5 , 75.25]), 24.75)
+```
+
 - ### Iterating Arrays(1-D, 2-D, 3-D)
+
+```python
+import numpy as np
+
+arr = np.array([1, 2, 3])  # 1-D array
+for x in arr:
+  print(x)
+
+arr = np.array([[1, 2, 3], [4, 5, 6]])  # 2-D array
+for x in arr:
+  for y in x:
+    print(y)
+
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])  # 3-D array
+for x in arr:
+  for y in x:
+    for z in y:
+      print(z)
+
+```
+
 - ### numpy.nditer function(order)
+NumPy package contains an iterator object numpy.nditer. It is an efficient multidimensional iterator
+object using which it is possible to iterate over an array. We can specify the order of iteration:
+   - C Style: means row wise
+   - F style: means column wise
+
+```python
+import numpy as np
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+
+print ('Original array is:' )
+print (a)
+print ('\n')
+
+print ('Sorted in C-style order:')
+for x in np.nditer(a, order = 'C'):
+  print (x),
+print ('\n')
+
+print ('Sorted in F-style order:')
+for x in np.nditer(a, order = 'F'):
+  print (x)
+```
 
 
 ## Day 4
 
-- numpy.nditer function(op_flags, flags, external_loop)
+- ### numpy.nditer function(op_flags, flags, external_loop)
+```python
+import numpy as np
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+print ('Original array is:')
+print (a)
+print ('\n')
+for x in np.nditer(a, op_flags = ['readwrite']):
+  x[...] = 2*x
+print ('Modified array is:')
+print (a)
+
+'''Original array is:
+[[ 0  5 10 15]
+ [20 25 30 35]
+ [40 45 50 55]]
+
+
+Modified array is:
+[[  0  10  20  30]
+ [ 40  50  60  70]
+ [ 80  90 100 110]]'''
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+print('Original array is:')
+print(a)
+print('\n')
+print('Modified array is:' )
+for x in np.nditer(a, flags = ['external_loop'], order = 'F'):
+  print(x)
+
+`
+'''Original array is:
+[[ 0  5 10 15]
+ [20 25 30 35]
+ [40 45 50 55]]
+
+
+Modified array is:
+[ 0 20 40]
+[ 5 25 45]
+[10 30 50]
+[15 35 55]'''
+
+```
 - Broadcasting Iteration
 - Enumerated Iteration Using ndenumerate()
 - numpy.logspace
