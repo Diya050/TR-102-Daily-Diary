@@ -366,6 +366,7 @@ for x in np.nditer(a, order = 'F'):
 ## Day 4
 
 - ### numpy.nditer function(op_flags, flags, external_loop)
+
 ```python
 import numpy as np
 a = np.arange(0,60,5)
@@ -383,7 +384,6 @@ print (a)
  [20 25 30 35]
  [40 45 50 55]]
 
-
 Modified array is:
 [[  0  10  20  30]
  [ 40  50  60  70]
@@ -398,12 +398,11 @@ print('Modified array is:' )
 for x in np.nditer(a, flags = ['external_loop'], order = 'F'):
   print(x)
 
-`
+
 '''Original array is:
 [[ 0  5 10 15]
  [20 25 30 35]
  [40 45 50 55]]
-
 
 Modified array is:
 [ 0 20 40]
@@ -517,7 +516,8 @@ print(c)
 
 [[5 8]
  [4 6]
- [7 8]]
+ [7 8]]'''
+
 ```
 
 - ### Joining Arrays(concatenate(), stack(), hstack(), vstack())
