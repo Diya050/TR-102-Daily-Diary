@@ -525,15 +525,156 @@ print(c)
 
 - ### Joining Arrays(concatenate(), stack(), hstack(), vstack())
 
+Joining means putting contents of two or more arrays in a single array. We pass a sequence of arrays that we want to join to
+the concatenate() function, along with the axis. If axis is not explicitly passed, it is taken as 0.
+
+```python
+import numpy as np
+arr1 = np.array([[1, 2], [3, 4]])
+arr2 = np.array([[5, 6], [7, 8]])
+arr = np.concatenate((arr1, arr2), axis=1)
+print(arr)
+'''
+[[1 2 5 6]
+ [3 4 7 8]]
+'''
+
+arr = np.concatenate((arr1, arr2))
+print(arr)
+'''
+[[1 2]
+ [3 4]
+ [5 6]
+ [7 8]]
+'''
+```
+
+```python
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr = np.stack((arr1, arr2), axis=0)
+print(arr)
+
+'''
+[[1 2 3]
+ [4 5 6]]
+'''
+
+arr = np.stack((arr1, arr2), axis=1)
+print(arr)
+
+'''
+[[1 4]
+ [2 5]
+ [3 6]]
+'''
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr = np.hstack((arr1, arr2))
+print(arr)
+
+'''
+[1 2 3 4 5 6]
+'''
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr = np.vstack((arr1, arr2))
+print(arr)
+
+'''
+[[1 2 3]
+ [4 5 6]]
+'''
+```
+
 
 ## Day 5
 
-- Joining Arrays(dstack())
-- Splitting NumPy Arrays(array_split())
-- Searching Arrays(where(), searchsorted())
-- Sorting Arrays
-- Filtering Arrays
-- Adding / Removing Elements(numpy.resize(), numpy.append())
+- ### Joining Arrays(dstack())
+
+```python
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr = np.dstack((arr1, arr2))
+print(arr)
+
+'''
+[[[1 4]
+  [2 5]
+  [3 6]]]
+'''
+```
+
+- ### Splitting NumPy Arrays(array_split())
+
+Splitting is reverse operation of Joining.Joining merges multiple arrays into one and Splitting breaks one array into multiple. We use array_split() for splitting arrays, we pass it the array we want to split and the number of splits.
+
+```python
+import numpy as np
+arr = np.array([1, 2, 3, 4, 5, 6])
+newarr = np.array_split(arr, 3)
+print(newarr)  # [array([1, 2]), array([3, 4]), array([5, 6])]
+
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+newarr = np.array_split(arr, 3, axis=0)
+print(newarr)
+
+'''
+[array([[1, 2, 3],
+       [4, 5, 6]]), array([[ 7,  8,  9],
+       [10, 11, 12]]), array([[13, 14, 15],
+       [16, 17, 18]])]
+'''
+
+newarr = np.array_split(arr, 3, axis=1)
+print(newarr)
+
+'''
+[array([[1, 2, 3],
+       [4, 5, 6]]), array([[ 7,  8,  9],
+       [10, 11, 12]]), array([[13, 14, 15],
+       [16, 17, 18]])]
+[array([[ 1],
+       [ 4],
+       [ 7],
+       [10],
+       [13],
+       [16]]), array([[ 2],
+       [ 5],
+       [ 8],
+       [11],
+       [14],
+       [17]]), array([[ 3],
+       [ 6],
+       [ 9],
+       [12],
+       [15],
+       [18]])]
+'''
+```
+
+- ### Searching Arrays(where(), searchsorted())
+
+```python
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+x = np.where(arr%2 == 0)
+print(x)  # (array([1, 3, 5, 7]),)
+
+arr = np.array([6, 7, 8, 9])
+x = np.searchsorted(arr, 9)
+print(x)  # 3
+```
+
+- ### Sorting Arrays
+- ### Filtering Arrays
+- ### Adding / Removing Elements(numpy.resize(), numpy.append())
 
 
 ## Day 6
