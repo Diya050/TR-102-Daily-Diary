@@ -673,17 +673,372 @@ print(x)  # 3
 ```
 
 - ### Sorting Arrays
+
+```python
+import numpy as np
+arr = np.array([[3, 2, 4], [5, 0, 1]])
+print(np.sort(arr))
+
+'''[[2 3 4]
+ [0 1 5]]'''
+
+arr = np.array(['banana', 'cherry', 'apple'])
+print(np.sort(arr))  # ['apple' 'banana' 'cherry']
+```
+
 - ### Filtering Arrays
+
+Getting some elements out of an existing array and creating a new array out of them is called
+filtering. 
+
+```python
+import numpy as np
+
+arr = np.array([41, 42, 43, 44, 45])
+newarr = np.array([], dtype=int)
+for x in arr:
+    if x > 42:
+        newarr = np.append(newarr, x)
+    
+print(newarr)  # [43 44 45]
+```
+
 - ### Adding / Removing Elements(numpy.resize(), numpy.append())
 
+```python
+import numpy as np
+a = np.array([[1,2,3],[4,5,6]])
+print('Original array:')
+print(a)
+print('\n')
+print('The shape of original array:')
+print(a.shape)
+print('\n')
+
+print( 'Resize the second array:')
+b = np.resize(a,(3,3))
+print(b)
+
+'''Original array:
+[[1 2 3]
+ [4 5 6]]
+
+The shape of original array:
+(2, 3)
+
+Resize the second array:
+[[1 2 3]
+ [4 5 6]
+ [1 2 3]]'''
+
+a = np.array([[1,2,3],[4,5,6]])
+print ('Given array:')
+print (a)
+print( '\n')
+print ('Append elements to given array:')
+print (np.append(a, [7,8,9]))
+
+'''Given array:
+[[1 2 3]
+ [4 5 6]]
+
+
+Append elements to given array:
+[1 2 3 4 5 6 7 8 9]
+'''
+```
 
 ## Day 6
 
-- Adding / Removing Elements(numpy.insert(), numpy.delete())
-- NumPy Broadcasting(Arithmetic Operations)
-- NumPy String Functions(add(), multiply(), center(), capitalize(), title(), lower(), upper(), strip(), split(), splitlines(), join(), replace(), encode(), decode())
-- Trigonometric functions(sin, cos, tan, arcsin, arccos, arctan, degrees)
+- ### Adding / Removing Elements(numpy.insert(), numpy.delete())
+```python
+import numpy as np
+a = np.array([[1,2],[3,4],[5,6]])
+print('First array:')
+print(a)
+print('\n')
 
+print('Axis parameter not passed. The input array is flattened before insertion.')
+print(np.insert(a,3,[11,12]))
+print('\n')
+
+print('Axis parameter passed. The values array is broadcast to match input array.')
+print('Broadcast along axis 0:' )
+print(np.insert(a,1,[11],axis = 0))
+print('\n')
+
+print('Broadcast along axis 1:')
+print(np.insert(a,1,11,axis = 1))
+
+'''
+First array:
+[[1 2]
+ [3 4]
+ [5 6]]
+
+Axis parameter not passed. The input array is flattened before insertion.
+[ 1  2  3 11 12  4  5  6]
+
+Axis parameter passed. The values array is broadcast to match input array.
+Broadcast along axis 0:
+[[ 1  2]
+ [11 11]
+ [ 3  4]
+ [ 5  6]]
+
+Broadcast along axis 1:
+[[ 1 11  2]
+ [ 3 11  4]
+ [ 5 11  6]]
+'''
+
+a = np.arange(12).reshape(3,4)
+print('First array:')
+print(a)
+print('\n')
+
+print('Array flattened before delete operation as axis not used:')
+print(np.delete(a,5))
+print('\n')
+
+print('Column 2 deleted:')
+print(np.delete(a,1,axis = 1))
+print('\n')
+
+print('A slice containing alternate values from array deleted:')
+a = np.array([1,2,3,4,5,6,7,8,9,10])
+print(np.delete(a, np.s_[::2]))
+
+'''First array:
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+
+Array flattened before delete operation as axis not used:
+[ 0  1  2  3  4  6  7  8  9 10 11]
+
+Column 2 deleted:
+[[ 0  2  3]
+ [ 4  6  7]
+ [ 8 10 11]]
+
+A slice containing alternate values from array deleted:
+[ 2  4  6  8 10]
+'''
+```
+- ### NumPy Broadcasting(Arithmetic Operations)
+
+```python
+import numpy as np
+a = np.array([[1,2,3,4],[2,4,5,6],[10,20,39,3]])  # (3,4)
+b = np.array([2,4,6,8])  # (4,)
+print("\nprinting array a..")
+print(a)
+print("\nprinting array b..")
+print(b)
+print("\nAdding arrays a and b ..")
+c = a + b # (3,4)
+print(c)
+
+'''
+printing array a..
+[[ 1  2  3  4]
+ [ 2  4  5  6]
+ [10 20 39  3]]
+
+printing array b..
+[2 4 6 8]
+
+Adding arrays a and b ..
+[[ 3  6  9 12]
+ [ 4  8 11 14]
+ [12 24 45 11]]
+'''
+
+print('\n')
+arr1 = np.array([1,2,3,4])  # (4,)
+arr2 = np.array(2)  # (1,)
+arr3 = arr1 * arr2  # (4,)
+print(arr3)  # [2 4 6 8]
+
+print('\n')
+a1 = np.array([1,2,3])
+a2 = a1.reshape(3,1) # (3,1)
+b1 = np.array([4,5]) # (1,2)
+c1 = a2 * b1 # (3,2)
+print(c1)
+
+'''
+[[ 4  5]
+ [ 8 10]
+ [12 15]]
+'''
+
+a = np.array([[1,2,3,4],[2,4,5,6],[10,20,39,3]])  # (3,4)
+b = np.array([[2,4,6,8], [2,4,6,8], [2,4,6,8]])  # (3,4)
+print("\nprinting array a..")
+print(a)
+print("\nprinting array b..")
+print(b)
+print("\nAdding arrays a and b ..")
+c = a + b # (3,4)
+print(c)
+
+'''
+printing array a..
+[[ 1  2  3  4]
+ [ 2  4  5  6]
+ [10 20 39  3]]
+
+printing array b..
+[[2 4 6 8]
+ [2 4 6 8]
+ [2 4 6 8]]
+
+Adding arrays a and b ..
+[[ 3  6  9 12]
+ [ 4  8 11 14]
+ [12 24 45 11]]
+'''
+```
+
+- ### NumPy String Functions(add(), multiply(), center(), capitalize(), title(), lower(), upper(), strip(), split(), splitlines(), join(), replace(), encode(), decode())
+
+```python
+import numpy as np
+print("Concatenating two string arrays:")
+print(np.char.add(['welcome','Hi'], [' to numpy', ' read python'] ))
+
+'''
+['welcome to numpy' 'Hi read python']
+'''
+
+print("Printing a string multiple times:")
+print(np.char.multiply("hello ",3))
+
+'''
+Printing a string multiple times:
+hello hello hello
+'''
+
+print("Padding the string through left and right with the fill char *");
+print(np.char.center("Numpy", 20, '*'))
+
+'''
+Padding the string through left and right with the fill char *
+*******Numpy********
+'''
+
+print("Converting all the characters of the string into lowercase...")
+print(np.char.lower("LEARN NUMPY"))
+
+'''
+Converting all the characters of the string into lowercase...
+learn numpy
+'''
+
+print("Converting all the characters of the string into uppercase...")
+print(np.char.upper("Learn Numpy"))
+
+'''
+Converting all the characters of the string into uppercase...
+LEARN NUMPY
+'''
+
+print("Splitting the String word by word..")
+print(np.char.split("Learn Numpy"),sep = " ")
+
+'''
+Splitting the String word by word..
+['Learn', 'Numpy']
+'''
+
+print("Splitting the String line by line..")
+print(np.char.splitlines("Welcome\nTo\nCoding\nWorld"))
+
+'''
+Splitting the String line by line..
+['Welcome', 'To', 'Coding', 'World']
+'''
+
+str = " welcome to coding world "
+print("Original String:",str)
+print("Removing the leading and trailing whitespaces from the string")
+print(np.char.strip(str))
+
+'''
+Original String:  welcome to coding world 
+Removing the leading and trailing whitespaces from the string
+welcome to coding world
+'''
+
+print(np.char.join(':','HM'))
+
+'''
+H:M
+'''
+
+str = "Welcome to Coding World"
+print("Original String:",str)
+print("Modified String:",end=" ")
+print(np.char.replace(str, "Welcome to","www."))
+
+'''
+Original String: Welcome to Coding World
+Modified String: www. Coding World
+'''
+
+enstr = np.char.encode("welcome to coding world", 'cp500')
+dstr = np.char.decode(enstr, 'cp500')
+print(enstr)
+print(dstr)
+
+'''
+b'\xa6\x85\x93\x83\x96\x94\x85@\xa3\x96@\x83\x96\x84\x89\x95\x87@\xa6\x96\x99\x93\x84'
+welcome to coding world
+'''
+```
+
+- ### Trigonometric functions(sin, cos, tan, arcsin, arccos, arctan, degrees)
+
+```python
+import numpy as np
+arr = np.array([0, 30, 60, 90])
+print("printing the sin values of different angles")
+sin_val = np.sin(arr*np.pi/180)
+print(sin_val)  # [0.        0.5       0.8660254 1.       ]
+
+print("printing the inverse of the sin")
+arcsin_val = np.arcsin(sinval)
+print(arcsin_val)  # [0.         0.52359878 1.04719755 1.57079633]
+
+
+print("printing the values in degrees")
+print(np.degrees(cosec))  # [ 0. 30. 60. 90.]
+
+print("\nprinting the cos values of different angles")
+cos_val = np.cos(arr*np.pi/180)
+print(cos_val)  # [1.00000000e+00 8.66025404e-01 5.00000000e-01 6.12323400e-17]
+
+print("printing the inverse of the cos")
+arccos_val = np.arccos(cosval)
+print(arccos_val)  # [0.    0.52359878 1.04719755 1.57079633]
+
+print("\nprinting the values in degrees")
+print(np.degrees(sec))  # [ 0. 30. 60. 90.]
+
+print("\nprinting the tan values of different angles")
+tan_val = np.tan(arr*np.pi/180)
+print(tan_val)  # [0.00000000e+00 5.77350269e-01 1.73205081e+00 1.63312394e+16]
+
+print("printing the inverse of the tan")
+cot = np.arctan(tanval)
+print(cot)  # [0.      0.52359878 1.04719755 1.57079633]
+
+print("\nprinting the values in degrees")
+print(np.degrees(cot))  # [ 0. 30. 60. 90.]
+
+```
 
 ## Day 7
 
