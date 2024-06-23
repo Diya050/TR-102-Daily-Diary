@@ -2,6 +2,8 @@
 
 **Name:** Diya Baweja<br>
 **Class:** CSE 'A1'
+**URN:** 2203425
+**CRN:** 2215036
 
 This is my daily diary for 4 weeks industrial/institutional training TR-102 in Data Analysis using Numpy, Pandas and Matplotlib.
 
