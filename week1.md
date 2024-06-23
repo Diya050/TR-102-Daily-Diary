@@ -1011,7 +1011,7 @@ sin_val = np.sin(arr*np.pi/180)
 print(sin_val)  # [0.        0.5       0.8660254 1.       ]
 
 print("printing the inverse of the sin")
-arcsin_val = np.arcsin(sinval)
+arcsin_val = np.arcsin(sin_val)
 print(arcsin_val)  # [0.         0.52359878 1.04719755 1.57079633]
 
 
@@ -1023,7 +1023,7 @@ cos_val = np.cos(arr*np.pi/180)
 print(cos_val)  # [1.00000000e+00 8.66025404e-01 5.00000000e-01 6.12323400e-17]
 
 print("printing the inverse of the cos")
-arccos_val = np.arccos(cosval)
+arccos_val = np.arccos(cos_val)
 print(arccos_val)  # [0.    0.52359878 1.04719755 1.57079633]
 
 print("\nprinting the values in degrees")
@@ -1034,22 +1034,151 @@ tan_val = np.tan(arr*np.pi/180)
 print(tan_val)  # [0.00000000e+00 5.77350269e-01 1.73205081e+00 1.63312394e+16]
 
 print("printing the inverse of the tan")
-cot = np.arctan(tanval)
-print(cot)  # [0.      0.52359878 1.04719755 1.57079633]
+arc_tan = np.arctan(tan_val)
+print(arc_tan)  # [0.      0.52359878 1.04719755 1.57079633]
 
 print("\nprinting the values in degrees")
-print(np.degrees(cot))  # [ 0. 30. 60. 90.]
+print(np.degrees(arc_tan))  # [ 0. 30. 60. 90.]
 
 ```
 
 ## Day 7
 
-- Rounding Functions(numpy.around(), numpy.floor(), numpy.ceil())
-- NumPy Matrix Library- numpy.matlib(zeros(), empty(), ones(), eye(), identity(), rand())
-- NumPy Linear Algebra- numpy.linalg(numpy.dot(), numpy.vdot(), numpy.inner(), numpy.matmul(), numpy.linalg.det())
-- NumPy Matrix Multiplication(numpy.multiply(), numpy.matmul())
-- 'numpy.unique' function
-- 'numpy.mean()' function
-- Overview of Pandas and it's importance in Data Analysis
-- Installing Pandas
-- Series Data Structure(introduction and indexing)
+- ### Rounding Functions(numpy.around(), numpy.floor(), numpy.ceil())
+
+```python
+import numpy as np
+
+arr = np.array([12.202, 90.23120, 123.020, 23.202])
+print("Printing the original array values:",end = " ")
+print(arr)
+print("Array values rounded off to 2 decimal position",np.around(arr, 2))  # [ 12.2   90.23 123.02  23.2 ]
+
+arr = np.array([12.202, 90.23120, 123.020, 23.202])
+print(np.floor(arr))  # [ 12. 90. 123. 23.]
+
+arr = np.array([12.202, 90.23120, 123.020, 23.202])
+print(np.ceil(arr))  # [ 13. 91. 124. 24.]
+
+```
+
+- ### NumPy Linear Algebra- numpy.linalg(numpy.dot(), numpy.vdot(), numpy.inner(), numpy.matmul(), numpy.linalg.det())
+
+```python
+import numpy as np
+
+a = np.array([[100,200],[23,12]])
+b = np.array([[10,20],[12,21]])
+dot = np.dot(a,b)
+print(dot)
+
+'''[[3400 6200]
+ [ 374  712]]'''
+
+a = np.array([[100,200],[23,12]])
+b = np.array([[10,20],[12,21]])
+vdot = np.vdot(a,b)
+print(vdot)  # 5528
+
+a = np.array([1,2,3,4,5,6])
+b = np.array([23,23,12,2,1,2])
+inner = np.inner(a,b)
+print(inner)  # 130
+
+a = np.array([[1,2,3],[4,5,6],[7,8,9]])
+b = np.array([[23,23,12],[2,1,2],[7,8,9]])
+mul = np.matmul(a,b)
+print(mul)
+
+'''[[ 48  49  43]
+ [144 145 112]
+ [240 241 181]]'''
+
+array1 = np.array([[1, 2], [3, 4]])
+print(np.linalg.det(array1))  # -2.0000000000000004
+```
+
+- ### NumPy Matrix Multiplication(numpy.multiply(), numpy.matmul())
+
+```python
+import numpy as np
+
+array1=np.array([[1,2,3],[4,5,6],[7,8,9]],ndmin=3)
+array2=np.array([[9,8,7],[6,5,4],[3,2,1]],ndmin=3)
+result=np.multiply(array1,array2)
+print(result)
+
+'''
+array([[[ 9, 16, 21],
+[24, 25, 24],
+[21, 16, 9]]])
+'''
+
+array1=np.array([[1,2,3],[4,5,6],[7,8,9]],ndmin=3)
+array2=np.array([[9,8,7],[6,5,4],[3,2,1]],ndmin=3)
+result=np.matmul(array1,array2)
+print(result)
+
+'''
+[[[ 30  24  18]
+  [ 84  69  54]
+  [138 114  90]]]
+'''
+```
+
+- ### 'numpy.unique' function
+
+```python
+import numpy as np
+
+a=np.unique([1,2,3,4,3,6,2,4])
+print(a)  # array([1, 2, 3, 4, 6])
+
+```
+- ### 'numpy.mean()' function
+
+```python
+import numpy as np
+
+a = np.array([[1, 2], [3, 4]])
+b=np.mean(a)
+print(b)  # 2.5
+```
+
+- ### Overview of Pandas and it's importance in Data Analysis
+
+Pandas is a powerful Python library for data analysis and manipulation, built on NumPy. It offers robust data structures and functions to handle structured data efficiently.<br>
+**Key Features:**
+
+  - **Data Structures:**
+        Series: One-dimensional labeled array.
+        DataFrame: Two-dimensional labeled table-like structure.
+
+  - **Data Manipulation:**
+        Tools for reshaping, merging, slicing, and handling missing data.
+
+   - **Data Alignment and Indexing:**
+        Intelligent label-based slicing, indexing, and data alignment.
+
+  - **Input/Output:**
+        Read/write data to/from CSV, Excel, SQL databases, JSON, etc.
+
+  - **Time Series:**
+        Tools for working with time series data.
+
+   - **Group By:**
+        Splitting data for aggregation, transformation, and analysis.
+
+**Importance in Data Analysis:**
+
+  - **Data Cleaning:** Comprehensive tools for preprocessing data.
+  - **Data Exploration:** Easy calculation of summary statistics and data visualization.
+  - **Data Transformation:** Reshaping data for analysis.
+  - **Performance:** Efficient handling of large datasets.
+  - **Ease of Use:** User-friendly syntax and extensive documentation.
+  - **Reproducibility:** Clear documentation of data analysis workflows.
+  - **Time Series Analysis:** Robust support for financial and forecasting analysis.
+    
+- ### Installing Pandas
+
+- ### Series Data Structure(introduction and indexing)
