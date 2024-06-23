@@ -265,6 +265,32 @@ print(np.sqrt(x))
 ## Day 3
 
 - NumPy - Array From Existing Data(asarray, frombuffer, fromiter)
+
+```python
+import numpy as np
+
+l = [[1,2,3,4],[8,9]]  # using list
+arr = np.asarray(l,  dtype = object)
+print(arr)
+
+l=(1,2,3,4,5,6,7)  # using tuple
+a = np.asarray(l)
+print(type(a))
+print(a)
+
+s = b'Hello World'
+a = np.frombuffer(s, dtype = 'S1')
+print(a)
+
+print(np.frombuffer(b'\x01\x02\x03', dtype = int)
+
+list = range(5)
+it = iter(list)
+
+x = np.fromiter(it, dtype = float)
+print(x)
+```
+
 - NumPy - Array From Numerical Ranges(arange, linspace)
 - Iterating Arrays(1-D, 2-D, 3-D)
 - numpy.nditer function(order)
