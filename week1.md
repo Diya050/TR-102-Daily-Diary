@@ -264,7 +264,7 @@ print(np.sqrt(x))
 
 ## Day 3
 
-- NumPy - Array From Existing Data(asarray, frombuffer, fromiter)
+- ### NumPy - Array From Existing Data(asarray, frombuffer, fromiter)
 
 ```python
 import numpy as np
@@ -291,9 +291,9 @@ x = np.fromiter(it, dtype = float)
 print(x)
 ```
 
-- NumPy - Array From Numerical Ranges(arange, linspace)
-- Iterating Arrays(1-D, 2-D, 3-D)
-- numpy.nditer function(order)
+- ### NumPy - Array From Numerical Ranges(arange, linspace)
+- ### Iterating Arrays(1-D, 2-D, 3-D)
+- ### numpy.nditer function(order)
 
 
 ## Day 4
