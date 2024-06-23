@@ -497,6 +497,7 @@ print(a)  # [   2.    4.    8.   16.   32.   64.  128.  256.  512. 1024.]
 ```
 
 - ### Random Function(randint, rand, randn)
+
 Python defines a set of functions that are used to generate or manipulate random numbers. This
 particular type of functions is used in a lot of games, lotteries or any application requiring random
 number generation.
@@ -751,6 +752,7 @@ Append elements to given array:
 ## Day 6
 
 - ### Adding / Removing Elements(numpy.insert(), numpy.delete())
+
 ```python
 import numpy as np
 a = np.array([[1,2],[3,4],[5,6]])
