@@ -271,24 +271,24 @@ import numpy as np
 
 l = [[1,2,3,4],[8,9]]  # using list
 arr = np.asarray(l,  dtype = object)
-print(arr)
+print(arr)  # [list([1, 2, 3, 4]) list([8, 9])]
 
 l=(1,2,3,4,5,6,7)  # using tuple
 a = np.asarray(l)
-print(type(a))
-print(a)
+print(type(a))  # <class 'numpy.ndarray'>
+print(a)  # [1 2 3 4 5 6 7]
 
 s = b'Hello World'
 a = np.frombuffer(s, dtype = 'S1')
-print(a)
+print(a)  # [b'H' b'e' b'l' b'l' b'o' b' ' b'W' b'o' b'r' b'l' b'd']
 
-print(np.frombuffer(b'\x01\x02\x03', dtype = int)
+print(np.frombuffer(b'\x01\x02\x03', dtype = 'i1')  # [1 2 3]
 
 list = range(5)
 it = iter(list)
 
 x = np.fromiter(it, dtype = float)
-print(x)
+print(x) # [0. 1. 2. 3. 4.]
 ```
 
 - ### NumPy - Array From Numerical Ranges(arange, linspace)
