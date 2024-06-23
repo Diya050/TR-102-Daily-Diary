@@ -412,11 +412,115 @@ Modified array is:
 [15 35 55]'''
 
 ```
-- Broadcasting Iteration
-- Enumerated Iteration Using ndenumerate()
-- numpy.logspace
-- Random Function(randint, rand, randn)
-- Joining Arrays(concatenate(), stack(), hstack(), vstack())
+- ### Broadcasting Iteration
+
+If two arrays are broadcastable, a combined nditer object is able to iterate upon them concurrently.
+Assuming that an array a has dimension 3X4, and there is another array b of dimension 1X4, the
+iterator of following type is used (array b is broadcast to size of a).
+
+```python
+import numpy as np
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+
+print('First array is:')
+print(a)
+print('\n')
+
+print('Second array is:')
+b = np.array([1, 2, 3, 4], dtype = int)
+print(b)
+print('\n')
+
+print('Modified array is:')
+for x,y in np.nditer([a,b]):
+  print("%d:%d" % (x, y),)
+
+'''First array is:
+[[ 0  5 10 15]
+ [20 25 30 35]
+ [40 45 50 55]]
+
+Second array is:
+[1 2 3 4]
+
+Modified array is:
+0:1
+5:2
+10:3
+15:4
+20:1
+25:2
+30:3
+35:4
+40:1
+45:2
+50:3
+55:4'''
+
+```
+  
+- ### Enumerated Iteration Using ndenumerate()
+
+Enumeration means mentioning sequence number of somethings one by one. Sometimes we require
+corresponding index of the element while iterating, the ndenumerate () method can be used for
+those use cases.
+
+```python
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+for idx, x in np.ndenumerate(arr):
+    print(idx, x)
+
+'''(0, 0) 1
+(0, 1) 2
+(0, 2) 3
+(0, 3) 4
+(1, 0) 5
+(1, 1) 6
+(1, 2) 7
+(1, 3) 8'''
+
+```
+- ### numpy.logspace
+This function returns an ndarray object that contains the numbers that are evenly spaced on a log
+scale. 
+```python
+import numpy as np
+
+a = np.logspace(1,10,num = 10, base = 2)
+print(a)  # [   2.    4.    8.   16.   32.   64.  128.  256.  512. 1024.]
+```
+
+- ### Random Function(randint, rand, randn)
+Python defines a set of functions that are used to generate or manipulate random numbers. This
+particular type of functions is used in a lot of games, lotteries or any application requiring random
+number generation.
+
+```python
+import numpy as np
+a = np.random.rand(2,3)
+b = np.random.randn(2,2)
+c = np.random.randint(10,size=(3,2))
+
+print(a)
+print(b)
+print(c)
+
+'''[[0.89408006 0.66384241 0.29393314]
+ [0.60898832 0.00642782 0.48096558]]
+
+[[ 1.81134639 -0.90428606]
+ [ 0.00276083  1.31003827]]
+
+[[5 8]
+ [4 6]
+ [7 8]]
+```
+
+- ### Joining Arrays(concatenate(), stack(), hstack(), vstack())
 
 
 ## Day 5
