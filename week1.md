@@ -484,12 +484,15 @@ for idx, x in np.ndenumerate(arr):
 
 ```
 - ### numpy.logspace
+
 This function returns an ndarray object that contains the numbers that are evenly spaced on a log
 scale. 
+
 ```python
 import numpy as np
 
 a = np.logspace(1,10,num = 10, base = 2)
+
 print(a)  # [   2.    4.    8.   16.   32.   64.  128.  256.  512. 1024.]
 ```
 
