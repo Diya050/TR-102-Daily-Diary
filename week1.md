@@ -1181,4 +1181,55 @@ Pandas is a powerful Python library for data analysis and manipulation, built on
     
 - ### Installing Pandas
 
-- ### Series Data Structure(introduction and indexing)
+   - For **Windows**,to install Python Pandas, go to your command prompt and type
+```
+pip install pandas
+```
+   - For **Linux**,
+```
+pip3 install pandas
+
+```
+   - For **MacOS**:
+```
+pip3 install pandas
+```
+
+- ### Series Data Structure: Introduction
+
+It is defined as a one-dimensional array that is capable of storing various data types. The row labels of
+series are called the index. We can easily convert the list, tuple, and dictionary into series using "series'
+method. A Series cannot contain multiple columns.
+
+A pandas Series can be created using the following constructor −
+pandas.Series( data, index, dtype, copy)
+
+```python
+import pandas as pd
+import numpy as np
+
+s = pd.Series()  # empty series
+print(s)
+
+data = np.array(['a','b','c','d'])
+s = pd.Series(data)  # series from array
+print(s)
+'''
+0 a
+1 b
+2 c
+3 d
+dtype: object
+'''
+```
+- ### Series Indexing
+
+```python
+import pandas as pd
+import numpy as np
+
+data = np.array(['a','b','c','d'])
+s = pd.Series(data,index=[100,101,102,103])  # assigning our own index
+print(s)
+```
+
