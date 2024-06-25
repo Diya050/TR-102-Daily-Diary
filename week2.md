@@ -3,26 +3,455 @@
 ## Day 8
 
 - ### Create a Series from dict
+
+```python
+import pandas as pd
+
+data = {'a' : 0., 'b' : 1., 'c' : 2.}
+s = pd.Series(data)  # Create a Series from dict
+print(s)
+'''
+a 0.0
+b 1.0
+c 2.0
+dtype: float64
+'''
+
+data = {'a' : 0., 'b' : 1., 'c' : 2.}
+s = pd.Series(data,index=['b','c','d','a'])
+print(s)
+'''
+b 1.0
+c 2.0
+d NaN
+a 0.0
+dtype: float64
+'''
+```
+
 - ### Accessing Data from Series with Position
+
+Data in the series can be accessed similar to that in an ndarray.
+
+```python
+import pandas as pd
+
+s = pd.Series([1,2,3,4,5],index = ['a','b','c','d','e'])
+
+print(s[0])  # 1
+
+s = pd.Series([1,2,3,4,5],index = ['a','b','c','d','e'])
+print(s[:3])
+'''
+a    1
+b    2
+c    3
+dtype: int64
+'''
+```
+
 - ### Checking Pandas Version
+
+The version string is stored under __version__ attribute.
+
+```python
+import pandas as pd
+print(pd.__version__)  # 1.0.3
+```
+
 - ### Retrieving Index array and data array of a series object
-- ### Retrieving Types (dtype) and Size of Type (itemsize)
+
+We can retrieve the index array and data array of an existing Series object by using the attributes index and values:
+
+```python
+import numpy as np
+import pandas as pd
+
+x=pd.Series(data=[2,4,6,8])
+y=pd.Series(data=[11.2,18.6,22.5], index=['a','b','c'])
+
+print(x.index)
+print(x.values)
+'''
+RangeIndex(start=0, stop=4, step=1)
+[2 4 6 8]
+'''
+
+print(y.index)
+print(y.values)
+'''
+Index(['a', 'b', 'c'], dtype='object')
+[11.2 18.6 22.5]
+'''
+```
+
+- ### Retrieving Types (dtype)
+
+```python
+import numpy as np
+import pandas as pd
+
+a=pd.Series(data=[1,2,3,4])
+b=pd.Series(data=[4.9,8.2,5.6], index=['x','y','z'])
+
+print(a.dtype)  # int64
+
+print(b.dtype)  # float64
+```
+
 - ### Retrieving Shape, Dimension, Size and Number of bytes
+
+```python
+import pandas as pd
+
+a=pd.Series(data=[[1,2,3,4], [1,2], 2, np.NaN]) # Data treated as 1-dimensional
+b=pd.Series(data=[4.9,8.2,5.6], index=['x','y','z'])
+print(a)
+'''
+0    [1, 2, 3, 4]
+1          [1, 2]
+2               2
+3             NaN
+dtype: object
+'''
+
+print(b)
+'''
+x    4.9
+y    8.2
+z    5.6
+dtype: float64
+'''
+
+print(a.shape)  # (4,)
+
+print(b.shape)  # (3,)
+print(a.ndim, b.ndim)  # 1 1
+print(a.size, b.size)  # 4 3
+print(a.nbytes, b.nbytes)  # 32 24
+
+print(len(a),len(b))  # 4 3
+print(a.count( ),b.count( ))  # 3 3
+```
+
 - ### Checking Emptiness and Presence of NaNs
+
+```python
+import numpy as np
+import pandas as pd
+
+a=pd.Series(data=[1,2,3,np.NaN])
+b=pd.Series(data=[4.9,8.2,5.6],index=['x','y','z'])
+c=pd.Series()
+
+print(a.empty,b.empty,c.empty)  # False False True
+print(a.hasnans,b.hasnans,c.hasnans)  # True False False
+```
+
 - ### Python Pandas DataFrame
+
+It is a widely used data structure of pandas and works with a two-dimensional array with labeled axes (rows and columns). DataFrame is defined as a standard way to store data and has two different indexes, i.e., row index and column index. It consists of the following properties:
+     1. The columns can be heterogeneous types like int, bool, and so on.
+     2. It can be seen as a dictionary of Series structure where both the rows and columns are indexed. It is denoted as "columns" in case of columns and "index" in case of rows.
+
 - ### Create an Empty DataFrame, a DataFrame from Lists, a DataFrame from Dict of ndarrays / Lists, a DataFrame from List of Dicts and a DataFrame from Dict of Series
+
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame()
+print(df)
+'''
+Empty DataFrame
+Columns: []
+Index: []
+'''
+
+print('\n')
+# DataFrame from List
+data = np.array(['a', 'b', 'x', 'y'])
+df = pd.DataFrame(data, columns=['data'])
+print(df)
+'''
+  data
+0    a
+1    b
+2    x
+3    y
+'''
+
+# list of lists
+print('\n')
+info = [['Diya', 95, 20], ['Rohan', 90, 22], ['Kavya', 85, 18]]
+df = pd.DataFrame(info, columns=['Name', 'Score', 'Age'])
+print(df)
+'''
+    Name  Score  Age
+0   Diya     95   20
+1  Rohan     90   22
+2  Kavya     85   18
+'''
+
+# dictionary of lists
+info = {'Name': ['Diya', 'Rohan', 'Kavya'], 'Age': [20, 22, 18]}
+df = pd.DataFrame(info, index=['rank1', 'rank2', 'rank3'])
+print(df)
+'''
+        Name  Age
+rank1   Diya   20
+rank2  Rohan   22
+rank3  Kavya   18
+'''
+
+# list of dictionaries
+info = [{'a': 0, 'b': 41}, {'a': 15, 'b': 20, 'c': 24}]
+df = pd.DataFrame(info, index=['first', 'second'])
+print(df)
+'''
+         a   b     c
+first    0  41   NaN
+second  15  20  24.0
+'''
+
+data = [{'a': 1, 'b': 2}, {'a': 5, 'b': 10, 'c': 20}]
+df1 = pd.DataFrame(data, index=['first', 'second'], columns=['a', 'b'])
+
+df2 = pd.DataFrame(data, index=['first', 'second'], columns=['a', 'b1'])
+print(df1)
+print(df2)
+'''
+        a   b
+first   1   2
+second  5  10
+
+        a  b1
+first   1 NaN
+second  5 NaN
+'''
+```
+
 - ### Column Selection, Addition and Deletion
 
+```python
+import pandas as pd
+
+d = {'one': pd.Series([1, 2, 3], index=['a', 'b', 'c']), 'two': pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print(df, '\n')
+print(df['one'], '\n')  # column selection
+'''
+   one  two
+a  1.0    1
+b  2.0    2
+c  3.0    3
+d  NaN    4 
+
+a    1.0
+b    2.0
+c    3.0
+d    NaN
+Name: one, dtype: float64
+'''
+
+# column addition
+df['three'] = pd.Series([1, 2, 3, 4], index=('a', 'b', 'c', 'd'))
+df['four'] = df['one']+df['three']
+print(df, '\n')
+'''
+   one  two  three  four
+a  1.0    1      1   2.0
+b  2.0    2      2   4.0
+c  3.0    3      3   6.0
+d  NaN    4      4   NaN 
+'''
+
+# column deletion
+del df['one']
+print(df)
+df.pop('three')
+print(df)
+print(df[1:3])
+'''
+   two  three  four
+a    1      1   2.0
+b    2      2   4.0
+c    3      3   6.0
+d    4      4   NaN
+   two  four
+a    1   2.0
+b    2   4.0
+c    3   6.0
+d    4   NaN
+'''
+```
 
 ## Day 9
 
 - ### Pandas Series.to_frame()
+
+```python
+import pandas as pd
+
+# series to dataframe
+s = pd.Series([11, 22, 13], name='age')
+print(s.to_frame())
+'''
+   age
+0   11
+1   22
+2   13
+'''
+
+emp_series = pd.Series(['abc', 'xyz'])
+id_series = pd.Series([1001, 1003])
+
+d = {'Emp': emp_series, 'ID': id_series}
+
+df = pd.DataFrame(d)
+print(df)
+'''
+   Emp    ID
+0  abc  1001
+1  xyz  1003
+'''
+```
+
 - ### Row Selection, Addition, and Deletion
-- ### Selection by Label and by by integer location
+
+```python
+import pandas as pd
+
+d = {'one': pd.Series([1, 2, 3], index=['a', 'b', 'c']), 'two': pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+print(df, '\n')
+'''
+   one  two
+a  1.0    1
+b  2.0    2
+c  3.0    3
+d  NaN    4
+'''
+
+print(df.loc['b'])  # row selection by label
+print(df.iloc[1], '\n')  # row selection by integer location
+'''
+one    2.0
+two    2.0
+Name: b, dtype: float64
+one    2.0
+two    2.0
+Name: b, dtype: float64
+'''
+
+# row addition
+d = pd.DataFrame([[7, 8], [9, 10]], columns=['x', 'y'])
+d2 = pd.DataFrame([[11, 12], [13, 14]], columns=['x', 'y'])
+d = d._append(d2, ignore_index=True)
+print(d)
+'''
+    x   y
+0   7   8
+1   9  10
+2  11  12
+3  13  14
+'''
+
+# row deletion
+d = d.drop(1)
+print(d)
+'''
+    x   y
+0   7   8
+2  11  12
+3  13  14
+'''
+```
 - ### Slice Rows
-- ### Pandas Series.value_counts()
+
+```python
+import pandas as pd
+
+d = {'one': pd.Series([1, 2, 3], index=['a', 'b', 'c']), 'two': pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+
+print(df[1:3])
+'''
+   one  two
+b  2.0    2
+c  3.0    3
+'''
+```
+-  ### Pandas Series.value_counts()
+
+The value_counts() function returns a Series that contain counts of unique values. It returns an object that will be in descending order so that its first element will be the most frequently-occurred element. By default, it excludes NA values.
+
+```python
+index = pd.Index([2, 1, 1, 1, 3, np.nan, 3])
+print(index.value_counts())  # counts unique values
+'''
+1.0    3
+3.0    2
+2.0    1
+Name: count, dtype: int64
+'''
+```
+
 - ### Pandas DataFrame.append()
+
+The Pandas append() function is used to add the rows of other dataframe to the end of the given
+dataframe, returning a new dataframe object. 
+
+```python
+import pandas as pd
+
+info1 = pd.DataFrame({"x":[25,15,12,19],
+"y":[47, 24, 17, 29]})
+
+info2 = pd.DataFrame({"x":[25, 15, 12],
+"y":[47, 24, 17],
+"z":[38, 12, 45]})
+
+print(info1.append(info2, ignore_index = True))
+
+'''
+    x   y     z
+0  25  47   NaN
+1  15  24   NaN
+2  12  17   NaN
+3  19  29   NaN
+4  25  47  38.0
+5  15  24  12.0
+6  12  17  45.0
+'''
+```
+
 - ### Pandas DataFrame.aggregate()
+
+The main task of DataFrame.aggregate() function is to apply some aggregation to one or more column.
+Most frequently used aggregations are:
+     - sum: It is used to return the sum of the values for the requested axis.
+     - min: It is used to return the minimum of the values for the requested axis.
+     - max: It is used to return the maximum values for the requested axis.
+
+```python
+import pandas as pd
+
+# aggregate function
+info=pd.DataFrame([[1,5,7],[10,12,15],[18,21,24],[np.nan,np.nan,np.nan]],columns=['X','Y','Z'])
+print(info.agg(['sum','min', 'max']))
+print(info.agg({'X':['sum','min', 'max'], 'Z':['sum', 'max']}))
+'''
+        X     Y     Z
+sum  29.0  38.0  46.0
+min   1.0   5.0   7.0
+max  18.0  21.0  24.0
+        X     Z
+sum  29.0  46.0
+min   1.0   NaN
+max  18.0  24.0
+'''
+```
 
 ## Day 10
 
