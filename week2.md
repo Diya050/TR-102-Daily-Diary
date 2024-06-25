@@ -151,8 +151,8 @@ print(a.hasnans,b.hasnans,c.hasnans)  # True False False
 - ### Python Pandas DataFrame
 
 It is a widely used data structure of pandas and works with a two-dimensional array with labeled axes (rows and columns). DataFrame is defined as a standard way to store data and has two different indexes, i.e., row index and column index. It consists of the following properties:
-     1. The columns can be heterogeneous types like int, bool, and so on.
-     2. It can be seen as a dictionary of Series structure where both the rows and columns are indexed. It is denoted as "columns" in case of columns and "index" in case of rows.
+   - The columns can be heterogeneous types like int, bool, and so on.
+   - It can be seen as a dictionary of Series structure where both the rows and columns are indexed. It is denoted as "columns" in case of columns and "index" in case of rows.
 
 - ### Create an Empty DataFrame, a DataFrame from Lists, a DataFrame from Dict of ndarrays / Lists, a DataFrame from List of Dicts and a DataFrame from Dict of Series
 
@@ -430,9 +430,9 @@ print(info1.append(info2, ignore_index = True))
 
 The main task of DataFrame.aggregate() function is to apply some aggregation to one or more column.
 Most frequently used aggregations are:
-     - sum: It is used to return the sum of the values for the requested axis.
-     - min: It is used to return the minimum of the values for the requested axis.
-     - max: It is used to return the maximum values for the requested axis.
+   - sum: It is used to return the sum of the values for the requested axis.
+   - min: It is used to return the minimum of the values for the requested axis.
+   - max: It is used to return the maximum values for the requested axis.
 
 ```python
 import pandas as pd
