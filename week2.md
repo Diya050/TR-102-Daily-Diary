@@ -765,3 +765,19 @@ D  15.0  18.0   NaN  11.0  12.0
 '''
 ```
 
+## Day 12
+
+- ### Reading CSV Files in Pandas Python
+- ### Check max_rows
+- ### Read JSON
+- ### Dictionary as JSON
+- ### Viewing the Data
+- ### Information About the Dataframe
+- ### Data Cleaning
+
+## Day 13
+
+- ### Empty Cells: Remove Rows
+- ### Empty Cells: Replace Empty Values
+- ### Empty Cells: Replace Using Mean, Median, or Mode
+- ### Convert Data of Wrong Format into Correct Format
