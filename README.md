@@ -20,3 +20,5 @@ This is my daily diary for 4 weeks industrial/institutional training TR-102 in D
      - [Day 9](https://diya050.github.io/TR-102-Daily-Diary/week2.html#day-9)
      - [Day 10](https://diya050.github.io/TR-102-Daily-Diary/week2.html#day-10)
      - [Day 11](https://diya050.github.io/TR-102-Daily-Diary/week2.html#day-11)
+     - [Day 12](https://diya050.github.io/TR-102-Daily-Diary/week2.html#day-12)
+     - [Day 13](https://diya050.github.io/TR-102-Daily-Diary/week2.html#day-13)
