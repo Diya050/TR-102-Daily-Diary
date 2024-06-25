@@ -768,6 +768,24 @@ D  15.0  18.0   NaN  11.0  12.0
 ## Day 12
 
 - ### Reading CSV Files in Pandas Python
+
+CSV files contains plain text and is a well know format that can be read by everyone including Pandas.
+pd.read_csv function is used to import the dataframes in python which has been created in excel files
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+print(df.to_string())
+```
+We are using to_string() function to print the entire DataFrame. If you have a large DataFrame with
+many rows, Pandas will only return the first 5 rows, and the last 5 rows:
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+print(df)
+```
+
 - ### Check max_rows
 - ### Read JSON
 - ### Dictionary as JSON
