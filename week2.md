@@ -456,8 +456,35 @@ max  18.0  24.0
 ## Day 10
 
 - ### Pandas DataFrame.assign()
+
+The assign() method is also responsible for adding a new column into a DataFrame.
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({'ID': [101, 102, 103]})
+df = df.assign(Name=['abc', 'xyz', 'lmn'])
+print(df)
+
+info = pd.DataFrame({'temp_c': [17.0, 25.0]},
+index=['Canada', 'Australia'])
+print(info)
+print(info.assign(temp_f=lambda x: x.temp_c * 7 / 2 + 24))
+print(info.assign(temp_f=lambda x: x['temp_c'] * 7/2 + 24))
+```
+
 - ### Pandas DataFrame.count()
+
+```python
+
+```
+
 - ### Pandas DataFrame.drop_duplicates()
+
+```python
+
+```
+
 - ### Pandas DataFrame.apply()
 - ### Pandas.groupby() Function
 - ### Pandas DataFrame.head()
