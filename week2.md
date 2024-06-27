@@ -929,8 +929,8 @@ df = pd.read_csv('data.csv')
 print(df.to_string())
 ```
 
-| Duration | Date       | Pulse | Maxpulse | Calories |
-|----------|------------|-------|----------|----------|
+|          | Duration | Date       | Pulse | Maxpulse | Calories |
+|----------|----------|------------|-------|----------|----------|
 | 0        | 60         | 2020/12/01 | 110   | 130      | 409.1    |
 | 1        | 60         | 2020/12/02 | 117   | 145      | 479.0    |
 | 2        | 60         | 2020/12/03 | 103   | 135      | 340.0    |
@@ -1162,8 +1162,8 @@ this is the data set of someone's workout sessions, we conclude with the fact th
 not work out in 450 minutes.
 
 
-| Duration | Date       | Pulse | Maxpulse | Calories |
-|----------|------------|-------|----------|----------|
+|          | Duration | Date       | Pulse | Maxpulse | Calories |
+|----------|----------|------------|-------|----------|----------|
 | 0        | 60         | 2020/12/01 | 110   | 130      | 409.1    |
 | 1        | 60         | 2020/12/02 | 117   | 145      | 479.0    |
 | 2        | 60         | 2020/12/03 | 103   | 135      | 340.0    |
