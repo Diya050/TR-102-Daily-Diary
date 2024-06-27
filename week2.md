@@ -476,20 +476,144 @@ print(info.assign(temp_f=lambda x: x['temp_c'] * 7/2 + 24))
 - ### Pandas DataFrame.count()
 
 ```python
+info = pd.DataFrame({"Person":["Parker", "Smith", "William", "John"],
+"Age": [27., 29, np.nan, 32]})
 
+print(info.count())
+print(info.count(axis='columns'))
 ```
 
 - ### Pandas DataFrame.drop_duplicates()
 
 ```python
+emp = {"Name": ["Parker", "Smith", "William", "Parker"],
+"Age": [21, 32, 29, 21]}
+info = pd.DataFrame(emp)
 
+info = info.drop_duplicates()
+print(info)
 ```
 
 - ### Pandas DataFrame.apply()
+
+```python
+info = pd.DataFrame([[2, 7]] * 4, columns=['P', 'Q'])
+print(info.apply(np.sqrt))
+print(info)
+
+print(info.apply(np.sum, axis=0))
+print(info.apply(np.sum, axis=1))
+print(info.apply(lambda x: [1, 2], axis=1))
+print(info.apply(lambda x: [1, 2], axis=1, result_type='expand'))
+print(info.apply(lambda x: pd.Series([1, 2, 3], index=['foo', 'bar', 'hoe']), axis=1))
+print(info.apply(lambda x: [1, 2], axis=1, result_type='broadcast'))
+```
+
 - ### Pandas.groupby() Function
+
+```python
+technologies = ({
+    'Courses':["Spark","PySpark","Hadoop","Python","Pandas","Hadoop","Spark","Python","NA"],
+    'Fee' :[22000,25000,23000,24000,26000,25000,25000,22000,1500],
+    'Duration':['30days','50days','55days','40days','60days','35days','30days','50days','40days'],
+    'Discount':[1000,2300,1000,1200,2500,None,1400,1600,0]
+})
+df = pd.DataFrame(technologies)
+print(df, '\n')
+df2 = df.groupby(['Courses','Duration']).sum()
+print(df2, '\n')
+df2 = df.groupby(['Courses','Duration']).sum().reset_index()
+print(df2, '\n')
+```
+
 - ### Pandas DataFrame.head()
+
+```python
+print(df.head(4), '\n')
+print(df.tail(2), '\n')
+```
+
 - ### Pandas DataFrame.iterrows()
+
+```python
+info = pd.DataFrame(np.random.randn(4,2), columns=['col1','col2'])
+print(info, '\n')
+for row_index,row in info.iterrows():
+    print (row_index,'\n', row)
+    
+print('\n')
+for r in info.itertuples():
+    print(r)
+    
+print('\n')
+for r in info._iter_column_arrays():
+    print(r)
+```
+
 - ### Pandas Join(inner, outer, left, right)
+
+```python
+import pandas as pd
+
+technologies = {
+'Courses':["Spark","PySpark","Python","pandas"],
+'Fee' :[20000,25000,22000,30000],
+'Duration':['30days','40days','35days','50days'],
+}
+index_labels=['r1','r2','r3','r4']
+df1 = pd.DataFrame(technologies,index=index_labels)
+
+technologies2 = {
+'Courses':["Spark","Java","Python","Go"],
+'Discount':[2000,2300,1200,2000]
+}
+index_labels2=['r1','r6','r3','r5']
+df2 = pd.DataFrame(technologies2,index=index_labels2)
+
+df3=df1.join(df2, lsuffix="_left", rsuffix="_right")
+print(df3)
+
+print('\n')
+df3=df1.join(df2, lsuffix="_left", rsuffix="_right", how='right')
+print(df3)
+
+print('\n')
+df3=df1.join(df2, lsuffix="_left", rsuffix="_right", how='inner')
+print(df3)
+
+print('\n')
+df3=df1.join(df2, lsuffix="_left", rsuffix="_right", how='outer')
+print(df3)
+
+'''
+   Courses_left    Fee Duration Courses_right  Discount
+r1        Spark  20000   30days         Spark    2000.0
+r2      PySpark  25000   40days           NaN       NaN
+r3       Python  22000   35days        Python    1200.0
+r4       pandas  30000   50days           NaN       NaN
+
+
+   Courses_left      Fee Duration Courses_right  Discount
+r1        Spark  20000.0   30days         Spark      2000
+r6          NaN      NaN      NaN          Java      2300
+r3       Python  22000.0   35days        Python      1200
+r5          NaN      NaN      NaN            Go      2000
+
+
+   Courses_left    Fee Duration Courses_right  Discount
+r1        Spark  20000   30days         Spark      2000
+r3       Python  22000   35days        Python      1200
+
+
+   Courses_left      Fee Duration Courses_right  Discount
+r1        Spark  20000.0   30days         Spark    2000.0
+r2      PySpark  25000.0   40days           NaN       NaN
+r3       Python  22000.0   35days        Python    1200.0
+r4       pandas  30000.0   50days           NaN       NaN
+r5          NaN      NaN      NaN            Go    2000.0
+r6          NaN      NaN      NaN          Java    2300.0
+'''
+```
 
 ## Day 11
 
@@ -815,19 +939,177 @@ print(df)
 
 - ### Check max_rows
 
+```python
+print(pd.options.display.max_rows)
+pd.options.display.max_rows = 1000
+print(pd.options.display.max_rows)
+
+'''
+60
+1000
+'''
+```
 
 - ### Read JSON
+
+```python
+import pandas as pd
+df = pd.read_json('data.json')
+print(df.to_string(
+```
+
 - ### Dictionary as JSON
+
+JSON = Python Dictionary
+JSON objects have the same format as Python dictionaries. If your JSON code is not in a file, but in a
+Python Dictionary, you can load it into a DataFrame directly:
+
+```python
+data = {
+"Duration":{
+"0":60,
+"1":60,
+"2":60,
+"3":45,
+"4":45,
+"5":60
+},
+"Pulse":{
+"0":110,
+"1":117,
+"2":103,
+"3":109,
+"4":117,
+"5":102
+},
+"Maxpulse":{
+"0":130,
+"1":145,
+"2":135,
+"3":175,
+"4":148,
+"5":127
+},
+"Calories":{
+"0":409.1,
+"1":479.0,
+"2":340.0,
+"3":282.4,
+"4":406.0,
+"5":300.5
+}
+}
+df = pd.DataFrame(data)
+print(df)
+
+'''
+   Duration  Pulse  Maxpulse  Calories
+0        60    110       130     409.1
+1        60    117       145     479.0
+2        60    103       135     340.0
+3        45    109       175     282.4
+4        45    117       148     406.0
+5        60    102       127     300.5
+'''
+```
+
 - ### Viewing the Data
+
+One of the most used method for getting a quick overview of the DataFrame, is the head() method.
+The head() method returns the headers and a specified number of rows, starting from the top.
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+print(df.head(10))
+print(df.tail(5))
+```
+`Note:` If the number of rows is not specified, the head() method will return the top 5 rows.
+
 - ### Information About the Dataframe
+
+The DataFrames object has a method called info(), that gives you more information about the data
+set.
+
+```python
+print(df.info())
+```
+The info() method also tells us how many Non-Null values there are present in each column, and in
+our data set it seems like there are 164 of 169 Non-Null values in the "Calories" column.
+
 - ### Data Cleaning
+
+Data cleaning means fixing bad data in your data set.
+Bad data could be:
+   1. Empty cells
+   2. Data in wrong format
+   3. Wrong data
+   4. Duplicates
 
 ## Day 13
 
 - ### Empty Cells: Remove Rows
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+new_df = df.dropna()
+print(new_df.to_string())
+```
+`Note:` By default, the dropna() method returns a new DataFrame, and will not change the original. If
+you want to change the original DataFrame, use the inplace = True argument.
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+df.dropna(inplace = True)
+print(df.to_string())
+```
+
 - ### Empty Cells: Replace Empty Values
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+
+df.fillna(130, inplace = True)
+```
+The example above replaces all empty cells in the whole Data Frame. To only replace empty values
+for one column, specify the column name for the DataFrame:
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+
+df["Calories"].fillna(130, inplace = True)
+```
+
 - ### Empty Cells: Replace Using Mean, Median, or Mode
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+x = df["Calories"].mean()
+df["Calories"].fillna(x, inplace = True)
+
+x = df["Calories"].mode()[0]
+df["Calories"].fillna(x, inplace = True)
+
+x = df["Calories"].median()
+df["Calories"].fillna(x, inplace = True)
+```
+
 - ### Convert Data of Wrong Format into Correct Format
+
+Cells with data of wrong format can make it difficult, or even impossible, to analyze data. To fix it,
+you have two options: remove the rows, or convert all cells in the columns into the same format. In our Data Frame, we have two cells with the wrong format. Check out row 22 and 26, the 'Date' column should be a string that represents a date:
+
+```python
+import pandas as pd
+df = pd.read_csv('data.csv')
+df['Date'] = pd.to_datetime(df['Date'])
+print(df.to_string())
+```
 
 ## Day 14
 
