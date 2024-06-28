@@ -52,3 +52,10 @@ print(df)
 df.to_excel(“new.xlsx”,sheet_name=”studentdatabase”)
 df.to_excel(“new.xlsx”,sheet_name=”studentdatabase”, startrow=2,startcol=2)
 ```
+## Day 16
+
+- ### Changing Multiple NaN Values with the help of Dictionary
+- ### Changing Multiple NaN Values with the forward values which is mentioned in dataframe
+- ### Changing Multiple NaN Values with Copying Next Values
+- ### Changing Multiple NaN Values with Copying Columns Adjacent to that Value
+- ### Changing Multiple NaN Values with Copying Specific No of Values Vertically
