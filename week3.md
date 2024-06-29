@@ -55,7 +55,74 @@ df.to_excel(“new.xlsx”,sheet_name=”studentdatabase”, startrow=2,startcol
 ## Day 16
 
 - ### Changing Multiple NaN Values with the help of Dictionary
+
+```python
+import pandas as pd
+
+df = pd.read_csv('data.csv')
+
+new_df=df.fillna({
+'Class':'no class given',
+'Marks':0,
+})
+
+print(new_df)
+```
+
 - ### Changing Multiple NaN Values with the forward values which is mentioned in dataframe
+
+```python
+import pandas as pd
+
+df=pd.DataFrame({"A":[5,None,None,4],
+				"B":[None,None,4,3],
+				"C":[4,None,8,5],
+				"D":[5,4,2,None]})
+
+print(df.ffill(limit=1))
+'''
+     A    B    C    D
+0  5.0  NaN  4.0  5.0
+1  5.0  NaN  4.0  4.0
+2  NaN  4.0  8.0  2.0
+3  4.0  3.0  5.0  2.0
+'''
+
+print(df.ffill(limit=1, axis=1))
+'''
+     A    B    C    D
+0  5.0  5.0  4.0  5.0
+1  NaN  NaN  NaN  4.0
+2  NaN  4.0  8.0  2.0
+3  4.0  3.0  5.0  5.0
+'''
+```
+
 - ### Changing Multiple NaN Values with Copying Next Values
-- ### Changing Multiple NaN Values with Copying Columns Adjacent to that Value
-- ### Changing Multiple NaN Values with Copying Specific No of Values Vertically
+
+```python
+import pandas as pd
+
+df=pd.DataFrame({"A":[5,None,None,4],
+				"B":[None,None,4,3],
+				"C":[4,None,8,5],
+				"D":[5,4,2,None]})
+
+print(df.bfill(limit=1))
+'''
+     A    B    C    D
+0  5.0  NaN  4.0  5.0
+1  NaN  4.0  8.0  4.0
+2  4.0  4.0  8.0  2.0
+3  4.0  3.0  5.0  NaN
+'''
+
+print(df.bfill(limit=1, axis=1))
+'''
+     A    B    C    D
+0  5.0  4.0  4.0  5.0
+1  NaN  NaN  4.0  4.0
+2  4.0  4.0  8.0  2.0
+3  4.0  3.0  5.0  NaN
+'''
+```
