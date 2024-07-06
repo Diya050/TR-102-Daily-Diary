@@ -334,4 +334,271 @@ Name: event, dtype: object
 
 ```
 
-- ### 
+## Day 18
+
+- ### Reshape DataFrame in Pandas: stack()
+
+The stack() method works with the MultiIndex objects in DataFrame, it returns a DataFrame with an index with a new inner-most level of row
+labels. It changes the wide table to a long table.
+
+```python
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+print(df)
+df_stacked = df.stack()
+print(df_stacked.head(26))
+
+'''
+     Duration  Pulse  Maxpulse  Calories
+0          60    110       130     409.1
+1          60    117       145     479.0
+2          60    103       135     340.0
+3          45    109       175     282.4
+4          45    117       148     406.0
+..        ...    ...       ...       ...
+164        60    105       140     290.8
+165        60    110       145     300.0
+166        60    115       145     310.2
+167        75    120       150     320.4
+168        75    125       150     330.4
+
+
+[169 rows x 4 columns]
+0  Duration     60.0
+   Pulse       110.0
+   Maxpulse    130.0
+   Calories    409.1
+1  Duration     60.0
+   Pulse       117.0
+   Maxpulse    145.0
+   Calories    479.0
+2  Duration     60.0
+   Pulse       103.0
+   Maxpulse    135.0
+   Calories    340.0
+3  Duration     45.0
+   Pulse       109.0
+   Maxpulse    175.0
+   Calories    282.4
+4  Duration     45.0
+   Pulse       117.0
+   Maxpulse    148.0
+   Calories    406.0
+5  Duration     60.0
+   Pulse       102.0
+   Maxpulse    127.0
+   Calories    300.0
+6  Duration     60.0
+   Pulse       110.0
+dtype: float64
+'''
+
+```
+
+- ### Reshape DataFrame in Pandas: unstack()
+
+The unstack() is similar to stack method, It also works with multi-index objects
+in dataframe, producing a reshaped DataFrame with a new inner-most level
+of column labels.
+
+```python
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+print(df)
+df_stacked = df.stack()
+print(df_stacked.head(26))
+new_df = df_stacked.unstack()
+print(new_df.head(20))
+
+'''
+    Duration  Pulse  Maxpulse  Calories
+0       60.0  110.0     130.0     409.1
+1       60.0  117.0     145.0     479.0
+2       60.0  103.0     135.0     340.0
+3       45.0  109.0     175.0     282.4
+4       45.0  117.0     148.0     406.0
+5       60.0  102.0     127.0     300.0
+6       60.0  110.0     136.0     374.0
+7       45.0  104.0     134.0     253.3
+8       30.0  109.0     133.0     195.1
+9       60.0   98.0     124.0     269.0
+10      60.0  103.0     147.0     329.3
+11      60.0  100.0     120.0     250.7
+12      60.0  106.0     128.0     345.3
+13      60.0  104.0     132.0     379.3
+14      60.0   98.0     123.0     275.0
+15      60.0   98.0     120.0     215.2
+16      60.0  100.0     120.0     300.0
+17      45.0   90.0     112.0       NaN
+18      60.0  103.0     123.0     323.0
+19      45.0   97.0     125.0     243.0
+'''
+```
+
+- ### Melt Function in Pandas
+
+Melt function is used to transform or reshape data. It is used to transform wide-format data into a long-format,
+making it suitable for various analytical tasks.
+
+```python
+import pandas as pd
+
+df = pd.read_csv("new.csv")
+print(df)
+df1 = pd.melt(df, id_vars=["Duration"])
+print(df1.head(26))
+
+'''
+   Duration  Pulse  Maxpulse  Calories
+0        60    110       130     409.1
+1        60    117       145     479.0
+2        60    103       135     340.0
+3        45    109       175     282.4
+4        45    117       148     406.0
+5        60    102       127     300.5
+
+    Duration  variable  value
+0         60     Pulse  110.0
+1         60     Pulse  117.0
+2         60     Pulse  103.0
+3         45     Pulse  109.0
+4         45     Pulse  117.0
+5         60     Pulse  102.0
+6         60  Maxpulse  130.0
+7         60  Maxpulse  145.0
+8         60  Maxpulse  135.0
+9         45  Maxpulse  175.0
+10        45  Maxpulse  148.0
+11        60  Maxpulse  127.0
+12        60  Calories  409.1
+13        60  Calories  479.0
+14        60  Calories  340.0
+15        45  Calories  282.4
+16        45  Calories  406.0
+17        60  Calories  300.5
+'''
+
+```
+
+- ### General Unstacking of pandas dataframe at multi-levels using unstack()
+
+```python
+import pandas as pd
+
+data = pd.DataFrame({"cars": ["bmw", "bmw", "benz", "benz"],
+"sale_q1 in Cr": [20, 22, 24, 26],
+'sale_q2 in Cr': [11, 13, 15, 17]},
+columns=["cars", "sale_q1 in Cr",
+'sale_q2 in Cr'])
+print(data)
+
+stacked_data = data.stack()
+print(stacked_data)
+
+stack_level_1 = stacked_data.unstack(level=0)
+print(stack_level_1)
+
+stack_level_2 = stacked_data.unstack(level=1)
+print(stack_level_2)
+
+'''
+   cars  sale_q1 in Cr  sale_q2 in Cr
+0   bmw             20             11
+1   bmw             22             13
+2  benz             24             15
+3  benz             26             17
+
+0  cars              bmw
+   sale_q1 in Cr      20
+   sale_q2 in Cr      11
+1  cars              bmw
+   sale_q1 in Cr      22
+   sale_q2 in Cr      13
+2  cars             benz
+   sale_q1 in Cr      24
+   sale_q2 in Cr      15
+3  cars             benz
+   sale_q1 in Cr      26
+   sale_q2 in Cr      17
+dtype: object
+
+                 0    1     2     3
+cars           bmw  bmw  benz  benz
+sale_q1 in Cr   20   22    24    26
+sale_q2 in Cr   11   13    15    17
+
+   cars sale_q1 in Cr sale_q2 in Cr
+0   bmw            20            11
+1   bmw            22            13
+2  benz            24            15
+3  benz            26            17
+'''
+
+```
+
+- ### GroupBy Unstacking of pandas dataframe with simple unstack()
+
+Whenever we use groupby function on pandas dataframe with more than
+one aggregation function per column, the output is usually a multi-indexed
+column where as the first index specifies the column name and the second
+column index specifies the aggregation function name.
+
+```python
+import pandas as pd
+
+# Data
+data = pd.DataFrame({
+    'cars': ['bmw', 'bmw', 'benz', 'benz'],
+    'sale_q1 in Cr': [20, 22, 24, 26],
+    'sale_q2 in Cr': [11, 13, 15, 17]
+})
+
+# Groupby and aggregate
+grouped_data = data.groupby('cars').aggregate({
+    'sale_q1 in Cr': ['sum', 'max'],
+    'sale_q2 in Cr': ['sum', 'min']
+})
+
+# Reshape the data
+unstack_level1 = grouped_data.stack(level=0, future_stack=True).unstack()
+unstack_level2 = grouped_data.stack(level=1, future_stack=True).unstack()
+
+print(data)
+print(grouped_data)
+print(unstack_level1)
+print(unstack_level2)
+
+'''
+   cars  sale_q1 in Cr  sale_q2 in Cr
+0   bmw             20             11
+1   bmw             22             13
+2  benz             24             15
+3  benz             26             17
+
+     sale_q1 in Cr     sale_q2 in Cr    
+               sum max           sum min
+cars                                    
+benz            50  26            32  15
+bmw             42  22            24  11
+
+               sum                ...           min              
+     sale_q1 in Cr sale_q2 in Cr  ... sale_q1 in Cr sale_q2 in Cr
+cars                              ...                            
+benz            50            32  ...           NaN          15.0
+bmw             42            24  ...           NaN          11.0
+
+[2 rows x 6 columns]
+
+     sale_q1 in Cr           sale_q2 in Cr          
+               sum   max min           sum max   min
+cars                                                
+benz          50.0  26.0 NaN          32.0 NaN  15.0
+bmw           42.0  22.0 NaN          24.0 NaN  11.0
+'''
+```
+
+## Day 19
+
+- ### Indexing in Pandas
