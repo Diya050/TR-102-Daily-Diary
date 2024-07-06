@@ -675,8 +675,6 @@ print(info.mean(axis = 0, skipna = True))
 
 print(info.mean(axis = 1, skipna = True))
 
-import pandas as pd
-
 left = pd.DataFrame({
 'id':[1,2,3,4,5],
 'Name': ['Alex', 'Amy', 'Allen', 'Alice', 'Ayoung'],
@@ -712,6 +710,18 @@ print(pd.merge(left,right,on='subject_id'))
 2     4   Alice       sub6     4  Bryce
 3     5  Ayoung       sub5     5  Betty
 '''
+
+print(pd.merge(left,right,on='subject_id', how='outer', indicator=True))
+'''
+   id_x  Name_x subject_id  id_y Name_y      _merge
+0   1.0    Alex       sub1   NaN    NaN   left_only
+1   2.0     Amy       sub2   1.0  Billy        both
+2   NaN     NaN       sub3   3.0   Bran  right_only
+3   3.0   Allen       sub4   2.0  Brian        both
+4   5.0  Ayoung       sub5   5.0  Betty        both
+5   4.0   Alice       sub6   4.0  Bryce        both
+'''
+
 ```
 
 - ### Pandas Dataframe.Query() Method
