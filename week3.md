@@ -605,7 +605,7 @@ bmw           42.0  22.0 NaN          24.0 NaN  11.0
 
 Indexing in pandas means selecting specific rows and columns from a DataFrame. This can be done in various ways:
 
-  ### Types of Multi-Axes Indexing
+  **Types of Multi-Axes Indexing**
    1. **DataFrame\[ \]** - Indexing operator for column selection.
    2. **DataFrame.loc\[ \]** - Indexing by labels.
    3. **DataFrame.iloc\[ \]** - Indexing by positions (integers).
