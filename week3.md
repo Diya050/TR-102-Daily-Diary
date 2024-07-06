@@ -602,3 +602,93 @@ bmw           42.0  22.0 NaN          24.0 NaN  11.0
 ## Day 19
 
 - ### Indexing in Pandas
+
+Indexing in pandas means selecting specific rows and columns from a DataFrame. This can be done in various ways:
+
+  ### Types of Multi-Axes Indexing
+   1. **DataFrame\[ \]** - Indexing operator for column selection.
+   2. **DataFrame.loc\[ \]** - Indexing by labels.
+   3. **DataFrame.iloc\[ \]** - Indexing by positions (integers).
+   4. **DataFrame.ix\[ \]** - Deprecated; used for both label and integer-based indexing.
+
+ - ### Indexing Using \[ \]
+
+```python
+import pandas as pd
+
+# Selecting a Single Column
+data = pd.read_csv("nba.csv", index_col="Name")
+first = data["Age"]
+print(first)
+
+# Selecting Multiple Columns
+data = pd.read_csv("nba.csv", index_col="Name")
+first = data[["Age", "College", "Salary"]]
+print(first)
+
+```
+
+ - ### Indexing Using .loc[ ]
+
+```python
+import pandas as pd
+
+# Selecting a Single Row by Label
+data = pd.read_csv("nba.csv", index_col="Name")
+first = data.loc["Avery Bradley"]
+print(first)
+
+# Selecting Multiple Rows by Label
+data = pd.read_csv("nba.csv", index_col="Name")
+first = data.loc[["Avery Bradley", "R.J. Hunter"]]
+print(first)
+
+# Selecting Rows and Columns by Label
+data = pd.read_csv("nba.csv", index_col="Name")
+first = data.loc[["Avery Bradley", "R.J. Hunter"], ["Team", "Number", "Position"]]
+print(first)
+
+# Selecting All Rows and Some Columns
+data = pd.read_csv("nba.csv", index_col="Name")
+first = data.loc[:, ["Team", "Number", "Position"]]
+print(first)
+```
+
+ - ### Indexing Using .iloc[ ]
+
+```python
+import pandas as pd
+
+# Selecting a Single Row by Position
+data = pd.read_csv("nba.csv", index_col="Name")
+row2 = data.iloc[3]
+print(row2)
+
+# Selecting Multiple Rows by Position
+data = pd.read_csv("nba.csv", index_col="Name")
+row2 = data.iloc[[3, 5, 7]]
+print(row2)
+
+# Selecting Rows and Columns by Position
+data = pd.read_csv("nba.csv", index_col="Name")
+row2 = data.iloc[[3, 4], [1, 2]]
+print(row2)
+
+# Selecting All Rows and Some Columns by Position
+data = pd.read_csv("nba.csv", index_col="Name")
+row2 = data.iloc[:, [1, 2]]
+print(row2)
+```
+
+ - ### Indexing Using .ix[ ] (Deprecated)
+
+```python
+# Deprecated, but for historical context:
+import pandas as pd
+
+# Selecting a Single Row using .ix[] as .loc[]
+data = pd.read_csv("nba.csv", index_col="Name")
+first = data.ix["Avery Bradley"]
+print(first)
+
+```
