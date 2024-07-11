@@ -692,3 +692,23 @@ first = data.ix["Avery Bradley"]
 print(first)
 
 ```
+
+## Day 20
+
+- ### Set index
+- ### Multiple Index
+- ### Datetime Index
+- ### DataFrame.pivot()
+- ### Pandas.pivot_table()
+- ### fill_value Parameter
+- ### Pandas crosstab()
+
+## Day 21
+
+- ### Pandas Series.str.slice()
+- ### Adding new column to existing DataFrame in Pandas: insert()
+- ### Pandas Add Column to DataFrame using a Dictionary
+- ### Adding More than One columns in Existing Dataframe
+- ### Pandas DataFrame.truncate
+- ### Delete rows/columns from DataFrame using Pandas.drop()
+- ### Pandas Iterate Over Columns of DataFrame
