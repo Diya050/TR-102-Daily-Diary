@@ -205,16 +205,7 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/b4cb5093-9402-4322-ae99-9e646d3df656)
 
 
-
-| Example format String | Description                                                      |
-|-----------------------|------------------------------------------------------------------|
-| 'b'                   | Using for the blue marker with default shape.                    |
-| 'ro'                  | Red circle                                                       |
-| '-g'                  | Green solid line                                                 |
-| '--'                  | A dashed line with the default color                             |
-| '^k:'                 | Black triangle up markers connected by a dotted line             |
-
-
+<br>
 
 
 - ### Colour Abbreviations
@@ -290,7 +281,52 @@ plt.show()
 ## Day 24
 
 - ### Format Strings: "fmt"
+
+We can also use the shortcut string notation parameter to specify the marker.
+This parameter is also called fmt, and is written with this syntax: `marker|line|color`
+
+<br>
+
+| Example format String | Description                                                      |
+|-----------------------|------------------------------------------------------------------|
+| 'b'                   | Using for the blue marker with default shape.                    |
+| 'ro'                  | Red circle                                                       |
+| '-g'                  | Green solid line                                                 |
+| '--'                  | A dashed line with the default color                             |
+| '^k:'                 | Black triangle up markers connected by a dotted line             |
+
+
+
 - ### Marker Reference
+
+| Marker | Description         |
+|--------|---------------------|
+| 'o'    | Circle              |
+| '*'    | Star                |
+| '.'    | Point               |
+| ','    | Pixel               |
+| 'x'    | X                   |
+| 'X'    | X (filled)          |
+| '+'    | Plus                |
+| 'P'    | Plus (filled)       |
+| 's'    | Square              |
+| 'D'    | Diamond             |
+| 'd'    | Diamond (thin)      |
+| 'p'    | Pentagon            |
+| 'H'    | Hexagon             |
+| 'h'    | Hexagon             |
+| 'v'    | Triangle Down       |
+| '^'    | Triangle Up         |
+| '<'    | Triangle Left       |
+| '>'    | Triangle Right      |
+| '1'    | Tri Down            |
+| '2'    | Tri Up              |
+| '3'    | Tri Left            |
+| '4'    | Tri Right           |
+| '|'    | Vline               |
+| '_'    | Hline               |
+
+<br>
 - ### Marker Size, Edge Color and Face Color
 - ### Matplotlib Line: Linestyle
 - ### Line Styles, Color and Width
