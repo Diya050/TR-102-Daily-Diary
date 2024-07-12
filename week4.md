@@ -204,7 +204,14 @@ plt.show()
 
 ![image](https://github.com/user-attachments/assets/b4cb5093-9402-4322-ae99-9e646d3df656)
 
-![image](https://github.com/user-attachments/assets/b204578c-37d2-4c49-acbb-4aa4930ec647)
+| Example format String | Description                                                      |
+|-----------------------|------------------------------------------------------------------|
+| 'b'                   | Using for the blue marker with default shape.                    |
+| 'ro'                  | Red circle                                                       |
+| '-g'                  | Green solid line                                                 |
+| '--'                  | A dashed line with the default color                             |
+| '^k:'                 | Black triangle up markers connected by a dotted line             |
+
 
 - ### Colour Abbreviations
 
