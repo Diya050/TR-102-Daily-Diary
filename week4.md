@@ -85,15 +85,6 @@ plt.show()
 ```
 ![Figure_2](https://github.com/user-attachments/assets/b69899a6-0e39-4a23-acf0-a69be6a1783b)
 
-```python
-import matplotlib.pyplot as plt
-
-xpoints = np.array([0, 6])
-ypoints = np.array([0, 250])
-plt.plot(xpoints, ypoints)
-plt.show()
-```
-![Figure_3](https://github.com/user-attachments/assets/519b978f-304c-4748-ad71-e98dcdbf9f27)
 
 ```python
 import matplotlib.pyplot as plt
@@ -169,9 +160,68 @@ plt.show()
 ```python
 import matplotlib.pyplot as plt
 
+X=[1,2,3,4,5,6]
+Y=[2,3,1,4,5,6]
+Z=[3,2,4,5,1,2]
+Colors1=[10,49,30,29,56,30]
+Sizes=[100,200,300,400,150,500]
+
+plt.scatter(X,Y,c=Colors1,s=200 ,cmap="viridis",alpha=0.5)
+plt.scatter(X,Z,color="r",marker="*", s=Sizes,alpha=0.5)
+
+t=plt.colorbar()
+t.set_label("ColorBar",fontsize=12)
+plt.title("Scatterplot",fontsize=12)
+plt.xlabel("Day",fontsize=15)
+plt.ylabel("No.",fontsize=15)
 ```
+
+![image](https://github.com/user-attachments/assets/1625c549-7474-4939-b4e7-88e756f3a996)
+
 - ### Plot() function
+
+```python
+import matplotlib.pyplot as plt
+
+xpoints = np.array([0, 6])
+ypoints = np.array([0, 250])
+plt.plot(xpoints, ypoints)
+plt.show()
+```
+![Figure_3](https://github.com/user-attachments/assets/519b978f-304c-4748-ad71-e98dcdbf9f27)
+
+There is an optional third argument, which is a format string that indicates the color and line type of
+the plot. The default format string is 'b-'which is the solid blue as you can observe in the above
+plotted graph. Let's consider the following example where we plot the graph with the red circle.
+
+```python
+import matplotlib.pyplot as plt
+
+plt.plot([1, 2, 3, 3.5, 4,5], [1, 4, 9, 2, 16,25], 'ro:') # "r"- red, "o"- circle, ":"- dotted line
+plt.axis([0, 6, 0, 20])
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/b4cb5093-9402-4322-ae99-9e646d3df656)
+
+![image](https://github.com/user-attachments/assets/b204578c-37d2-4c49-acbb-4aa4930ec647)
+
 - ### Colour Abbreviations
+
+Here is the Markdown code with the data included:
+
+| Character | Color   |
+|-----------|---------|
+| "b"       | Blue    |
+| "g"       | Green   |
+| "r"       | Red     |
+| "c"       | Cyan    |
+| "m"       | Magenta |
+| "y"       | Yellow  |
+| "k"       | Black   |
+| "w"       | White   |
+
+
 - ### Sub Plots
 - ### Plotting with categorical variables
 
