@@ -145,7 +145,31 @@ plt.show()
 ## Day 23
 
 - ### Scatter Plots in Matplotlib
+
+ ```python
+import matplotlib.pyplot as plt
+
+X=[1,2,3,4,5,6]
+Y=[2,3,1,4,5,6]
+Colors=[10,49,20,29,56,40]
+Size=[170,200,300,400,150,300]
+
+plt.scatter(X, Y, c=Colors, s=Size, alpha=0.8, marker="*", edgecolor="y", linewidth=1 , cmap="viridis")
+
+plt.colorbar()
+plt.title("Scatterplot Graph",fontsize=12)
+plt.xlabel("Days", fontsize=12)
+plt.ylabel("No.", fontsize=12)
+plt.show()
+ ```
+![Figure_5](https://github.com/user-attachments/assets/a9ac1373-f21b-4ea0-9c5d-e1c70defc87b)
+
 - ### Two ScatterPlots in Matplotlib
+
+```python
+import matplotlib.pyplot as plt
+
+```
 - ### Plot() function
 - ### Colour Abbreviations
 - ### Sub Plots
