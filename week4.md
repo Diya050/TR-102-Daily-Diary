@@ -74,7 +74,73 @@ plt.show()
 ![Figure_1](https://github.com/Diya050/TR-102-Daily-Diary/assets/124448340/300f3c1f-b5c4-4ea4-b501-b5ef53c065f1)
 
 - ### Bar Plot in Matplotlib
+
+```python
+import matplotlib.pyplot as plt
+
+X=["Python", "C", "C++", "Java"]
+Y=[85,70,60,82]
+plt.bar(X, Y)
+plt.show()
+```
+![Figure_2](https://github.com/user-attachments/assets/b69899a6-0e39-4a23-acf0-a69be6a1783b)
+
+```python
+import matplotlib.pyplot as plt
+
+xpoints = np.array([0, 6])
+ypoints = np.array([0, 250])
+plt.plot(xpoints, ypoints)
+plt.show()
+```
+![Figure_3](https://github.com/user-attachments/assets/519b978f-304c-4748-ad71-e98dcdbf9f27)
+
+```python
+import matplotlib.pyplot as plt
+
+X=["Admin", "Sales", "Accounts", "IT"]
+Y=[2000,3000,1000,4000]
+
+plt.xlabel("Departments", fontsize=10)
+plt.ylabel("No. of Employees", fontsize=10)
+plt.title("Departments Chart")
+#plt.bar(X, Y, width=0.3, color="g", align="center")
+
+#giving the custom colors
+c = ["y", "m", "c", "r"]
+
+#alpha property is used to make the colors dull in barplot graph.
+plt.bar(X, Y, width=0.3, align="center", color=c, edgecolor="r", linewidth=2, linestyle="--", alpha=0.6)
+
+plt.legend(["Employee Count"])
+plt.show()
+```
+![Figure_4](https://github.com/user-attachments/assets/920ba07d-65fd-4964-aefb-af20a2d47b0c)
+
 - ### Double Bar Graph
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+X=['Python', 'C', 'C++', 'Java']
+Y=[85,70,60,82]
+Z=[20,30,40,50]
+width=0.2
+P = np.arange(len(X))
+P1 = [j+width for j in P]
+
+plt.xticks(P, X)
+plt.xlabel("Languages", fontsize=10)
+plt.ylabel("No. of Student Likes", fontsize=10)
+plt.title('Bar Graph')
+plt.bar(P, Y, width, color='r', label='Popularity in class A')
+plt.bar(P1, Z, width, color='y', label='Popularity in class B')
+
+plt.legend()
+plt.show()
+```
+![Figure_6](https://github.com/user-attachments/assets/3daa8b65-098a-46a5-aa6e-b75e69f3ddb6)
 
 ## Day 23
 
