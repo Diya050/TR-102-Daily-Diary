@@ -204,6 +204,8 @@ plt.show()
 
 ![image](https://github.com/user-attachments/assets/b4cb5093-9402-4322-ae99-9e646d3df656)
 
+
+
 | Example format String | Description                                                      |
 |-----------------------|------------------------------------------------------------------|
 | 'b'                   | Using for the blue marker with default shape.                    |
@@ -211,6 +213,8 @@ plt.show()
 | '-g'                  | Green solid line                                                 |
 | '--'                  | A dashed line with the default color                             |
 | '^k:'                 | Black triangle up markers connected by a dotted line             |
+
+
 
 
 - ### Colour Abbreviations
@@ -230,7 +234,58 @@ Here is the Markdown code with the data included:
 
 
 - ### Sub Plots
-- ### Plotting with categorical variables
+
+The subplot() function takes three arguments that describes the layout of the figure. The layout is organized in rows and columns, which are represented by the first and second argument.
+The third argument represents the index of the current plot.
+
+```python
+plt.subplot(1, 2, 1)
+#the figure has 1 row, 2 columns, and this plot is the first plot.
+
+plt.subplot(1, 2, 2)
+#the figure has 1 row, 2 columns, and this plot is the second plot.
+```
+
+```python
+import matplotlib.pyplot as plt
+
+names = ['Abhishek', 'Himanshu', 'Devansh']
+marks= [87,50,98]
+
+plt.subplot(311)
+plt.bar(names, marks)
+
+plt.subplot(312)
+plt.scatter(names, marks)
+
+plt.subplot(313)
+plt.plot(names, marks)
+
+plt.suptitle('Categorical Plotting')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/4b19368a-2e57-4fce-8355-c65400156b99)
+
+```python
+import matplotlib.pyplot as plt
+
+names = ['Abhishek', 'Himanshu', 'Devansh']
+marks= [87,50,98]
+
+plt.subplot(131)
+plt.bar(names, marks)
+
+plt.subplot(132)
+plt.scatter(names, marks)
+
+plt.subplot(133)
+plt.plot(names, marks)
+
+plt.suptitle('Categorical Plotting')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/14ddb611-22b6-4eed-a968-882cfd5eeab7)
+
 
 ## Day 24
 
