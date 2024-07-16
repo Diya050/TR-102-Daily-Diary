@@ -295,6 +295,16 @@ This parameter is also called fmt, and is written with this syntax: `marker|line
 | '--'                  | A dashed line with the default color                             |
 | '^k:'                 | Black triangle up markers connected by a dotted line             |
 
+```python
+import matplotlib.pyplot as plt
+
+ypoints = np.array([3, 8, 1, 10])
+plt.plot(ypoints, 'H:r', ms=10)
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/7b882500-d6b5-4aab-8408-e6a666dc1960)
+
 
 
 - ### Marker Reference
@@ -328,10 +338,132 @@ This parameter is also called fmt, and is written with this syntax: `marker|line
 
 <br>
 - ### Marker Size, Edge Color and Face Color
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+ypoints = np.array([3, 8, 1, 10])
+plt.plot(ypoints, marker = 'o', ms = 20, mec = 'b', mfc = 'y')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/482c08d5-02be-44f5-9746-d74a76d314e6)
+
+
 - ### Matplotlib Line: Linestyle
-- ### Line Styles, Color and Width
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+ypoints = np.array([3, 8, 1, 10])
+plt.plot(ypoints, linestyle = 'dotted')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/9bbd8781-ea88-477f-ace1-3dc2d309eec2)
+
+| Style    | Syntax |
+|----------|--------|
+| solid(default) | '-'    |
+| dotted   | ':'    |
+| dashed   | '--'   |
+| dashdot  | '-.'   |
+| None     | '' or ' ' |
+
+
+- ### Line Color and Width
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+ypoints = np.array([3, 8, 1, 10])
+plt.plot(ypoints, c="b", lw=10)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/f58bd160-166c-4f2f-96e4-a03eb57307b1)
+
+
 - ### Multiple Lines
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+y1 = np.array([3, 8, 1, 10])
+y2 = np.array([6, 2, 7, 11])
+plt.plot(y1)
+plt.plot(y2)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/5d745941-fec5-4cfc-a56b-73739f8f1c16)
+
+
 - ### Set Font Properties for Title and Labels
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+font1 = {'family':'serif','color':'blue','size':20}
+font2 = {'family':'serif','color':'darkred','size':15}
+plt.title("Sports Watch Data", fontdict = font1)
+plt.xlabel("Average Pulse", fontdict = font2)
+plt.ylabel("Calorie Burnage", fontdict = font2)
+plt.plot(x, y)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/5bd1fe6e-dacf-4ad5-a861-4f0c80c3367b)
+
 - ### Matplotlib Adding Grid Lines
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+plt.title("Sports Watch Data")
+plt.xlabel("Average Pulse")
+plt.ylabel("Calorie Burnage")
+plt.plot(x, y)
+plt.grid()
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/5de73c3d-beaa-4f7d-a3db-4270aac25aa9)
+
 - ### Specify Which Grid Lines to Display
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+plt.title("Sports Watch Data")
+plt.xlabel("Average Pulse")
+plt.ylabel("Calorie Burnage")
+plt.plot(x, y)
+plt.grid(axis = 'x')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/d8886f78-6f91-45b4-b133-2db229e44ac7)
+
 - ### Set Line Properties for the Grid
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+plt.title("Sports Watch Data")
+plt.xlabel("Average Pulse")
+plt.ylabel("Calorie Burnage")
+plt.plot(x, y)
+plt.grid(color = 'green', linestyle = '--', linewidth = 0.5)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/51b1a365-a1cd-41c4-91aa-d95599933a37)
