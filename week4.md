@@ -323,7 +323,7 @@ This parameter is also called fmt, and is written with this syntax: `marker|line
 | '2'    | Tri Up              |
 | '3'    | Tri Left            |
 | '4'    | Tri Right           |
-| '|'    | Vline               |
+| '\|'    | Vline               |
 | '_'    | Hline               |
 
 <br>
