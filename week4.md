@@ -490,6 +490,8 @@ plt.xlabel("Data in X axis")
 plt.ylabel("Data in Y axis")
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/84656a53-d1df-496b-86f2-82f64b90f2ba)
+
 
 - ### Using 'bins', 'cumulative', and 'auto' Parameter in Histogram:
 
@@ -499,13 +501,7 @@ import numpy as np
 
 n = [10, 20, 30, 34, 51, 41, 35, 42, 46, 49, 55, 56, 59, 60, 71, 75, 76, 79, 80]
 l = [10, 20, 30, 40, 50, 60, 70]
-plt.hist(n, color="r", bins=l)
-# defining the range of x axis
-plt.hist(n, color="b", bins='auto', range=(0, 200), edgecolor="r", align="left")  # mid, right
-# cumulative parameter is used to reverse the frequency of data
-plt.hist(n, color="b", bins='auto', range=(0, 200), edgecolor="r", cumulative=-1, bottom=10)
-# if you want to start the y axis from 10 then you should use bottom parameter.
-# we can use different types of histograms in our plot
+
 plt.hist(n, color="b", edgecolor="r", cumulative=-1, bottom=10, histtype="step", orientation="horizontal", rwidth=0.8, label="python")
 plt.legend()
 plt.xlabel("Data in X axis")
@@ -515,6 +511,8 @@ plt.axvline(45, color="r", label="line")
 plt.grid()
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/d0e93dd3-1da2-4acb-9b22-9a95389a65c3)
+
 
 - ### Formatting the Line graph With the Help of Modules
 
@@ -525,6 +523,9 @@ from matplotlib import pyplot as plt
 from matplotlib import style
 
 style.use('ggplot')
+plt.ylabel('Y axis')
+plt.xlabel('X axis')
+
 x = [16, 8, 10]
 y = [8, 16, 6]
 x2 = [8, 15, 11]
@@ -532,13 +533,12 @@ y2 = [6, 15, 7]
 plt.plot(x, y, 'r', label='line one', linewidth=5)
 plt.plot(x2, y2, 'm', label='line two', linewidth=5)
 plt.title('Epic Info')
-fig = plt.figure()
-plt.ylabel('Y axis')
-plt.xlabel('X axis')
-plt.legend()
+
 plt.grid(True, color='k')
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/30b34415-757e-4338-8afd-f8ac1e59a412)
+
 
 ```python
 from matplotlib import pyplot as plt
@@ -556,6 +556,8 @@ plt.ylabel('Y axis')
 plt.xlabel('X axis')
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/27024b63-7d34-4754-a106-29a21ab702db)
+
 
 - ### Horizontal Bar Graphs
 
@@ -570,6 +572,8 @@ plt.xlabel('Players')
 plt.ylabel('Runs')
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/1a2d9e18-883e-4712-bb1b-10ea1dafe6d2)
+
 
 - ### Pie Chart
 
@@ -590,21 +594,24 @@ students = [23, 17, 35, 29, 12]
 ax.pie(students, labels=langs)
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/1980e2ea-57fd-4df4-89ad-160f2716c893)
+
 
 ```python
 import matplotlib.pyplot as plt
 
 x = [10, 20, 30, 40]
 y = ["C", "C++", "Java", "Python"]
-ex = [0.4, 0.0, 0.0, 0.0]
+ex = [0.0, 0.0, 0.0, 0.0]
 c = ["r", "b", "g", "y"]
-plt.pie(x, labels=y, explode=ex)
 # to show percentage in graph, to give shadow and defining radius in graph
-plt.pie(x, labels=y, explode=ex, colors=c, autopct="%0.1f%%", shadow=True, radius=1.5, labeldistance=1.1, startangle=90, textprops={"fontsize": 15}, counterclock=False, wedgeprops={"linewidth": 8, "width": 2}, center=(3, 6), rotatelabels=True)
+plt.pie(x, labels=y, explode=ex, colors=c, autopct="%0.1f%%", shadow=True, radius=0.8, labeldistance=1.1, startangle=90, textprops={"fontsize": 15}, wedgeprops={"linewidth": 8, "width": 2}, rotatelabels=False)
 plt.title("Piechart of Subjects")
-plt.legend(loc=2)
+plt.legend(loc=0)
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/be4287c3-c11d-41b9-b02a-2d0327a4faac)
+
 
 ```python
 import matplotlib.pyplot as plt
@@ -616,6 +623,8 @@ plt.pie(x, labels=y, radius=1)
 plt.pie(x1, labels=y, radius=0.5)
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/ee2922d4-b0ba-4622-a4df-0d0476b72ecf)
+
 
 ## Day 26
 
@@ -640,6 +649,8 @@ plt.legend()
 # Displaying the plot
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/f3ebee14-f494-4fa4-8399-eac5f49d855a)
+
 
 - ### Box Plot in Matplotlib
 
@@ -691,6 +702,7 @@ plt.boxplot(X, notch=True, vert=False, labels=["python"], patch_artist=True, sho
 # Displaying the plot
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/8a6537a1-6950-46f1-bfab-0c9662cbd932)
 
 **Properties of Box Plot**
 
@@ -716,6 +728,7 @@ import numpy as np
 dataSet = np.random.normal(100, 25, 200)
 print(dataSet)
 ```
+
 The line of code np.random.normal(100, 25, 200) uses the numpy library to generate
 random numbers that follow a normal (Gaussian) distribution. Let's break down the parameters
 and the overall meaning of the code:
@@ -735,7 +748,6 @@ further from the mean. The spread of the data is determined by the standard devi
 import matplotlib.pyplot as plt
 import numpy as np
 dataSet = np.random.normal(100, 25, 200)
-print(dataSet)
 
 figure = plt.figure(figsize =(10, 8))
 # Figure will be 10 inches wide and 8 inches tall.
