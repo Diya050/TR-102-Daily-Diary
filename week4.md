@@ -742,6 +742,8 @@ figure = plt.figure(figsize =(10, 8))
 plt.boxplot(dataSet)
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/43b35bb8-1e5a-4b47-b5a0-f643b79e77d9)
+
 
 - ### Multiple Box Plots
 
@@ -760,6 +762,9 @@ ax = figure.add_axes([0, 0, 1, 1])
 bp = ax.boxplot(dataSet)
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/4f81643b-490f-4ba2-803e-957b9a29bb05)
+
+
 - ### Styling Components of Box Plot
 
 ```python
@@ -804,6 +809,8 @@ ax.get_xaxis().tick_bottom()
 ax.get_yaxis().tick_left()
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/ea33f38c-0184-4c08-bcbd-2f10b1fb6c08)
+
 
 ## Day 28
 
@@ -825,13 +832,15 @@ x = np.arange(0, math.pi*2, 0.05)
 y = np.sin(x)
 
 fig = plt.figure()
-ax = fig.add_axes([0,0,1,1])
+ax = fig.add_axes([0.1,0.1,0.8,0.8])
 ax.plot(x,y)
 ax.set_title("sine wave")
 ax.set_xlabel('angle')
 ax.set_ylabel('sine')
 plt.show()
 ```
+![image](https://github.com/user-attachments/assets/18a1d5ff-40da-49eb-ae23-44faccb2c66e)
+
 
 - ### Adding and Customizing Axes
 
@@ -841,10 +850,11 @@ ax = fig.add_axes([0,0,1,1])
 ax.set_title("Title")
 ax.set_xlabel("X-axis")
 ax.set_ylabel("Y-axis")
-
+plt.show()
 ```
 
 - ### Multiplots in Matplotlib
+
   - **Using subplot**
  
 ```python
@@ -854,8 +864,9 @@ plt.subplot(211)
 plt.plot(range(12))
 plt.subplot(212, facecolor='y')
 plt.plot(range(12))
-
+plt.show()
 ```
+![image](https://github.com/user-attachments/assets/104b6b4b-8130-4d08-ab80-513e3ca6ac46)
 
   - **Using add_subplot**
 
@@ -865,8 +876,9 @@ ax1 = fig.add_subplot(111)
 ax1.plot([1,2,3])
 ax2 = fig.add_subplot(221, facecolor='y')
 ax2.plot([1,2,3])
-
+plt.show()
 ```
+![image](https://github.com/user-attachments/assets/8233f8d0-5fc1-4baf-88b8-6e39e7f2ecfe)
 
   - **Using subplots**
 
@@ -885,11 +897,13 @@ a[1][0].set_title('exp')
 a[1][1].plot(x, np.log10(x))
 a[1][1].set_title('log')
 plt.show()
-
 ```
+![image](https://github.com/user-attachments/assets/be076f19-b43d-42a8-bb43-67b84a94ba1b)
+
 
 - ### Formatting Axes
-  - **Logarithmic Scale and Label Padding**
+ 
+ - **Logarithmic Scale and Label Padding**
 
 ```python
 import matplotlib.pyplot as plt
@@ -913,24 +927,33 @@ axes[1].set_xlabel("x axis")
 axes[1].set_ylabel("y axis")
 
 plt.show()
-
 ```
-  
+![image](https://github.com/user-attachments/assets/cb1a1b81-e742-4c8e-a44d-11040696fc28)
+
+
   - **Customizing Spines**
 
 ```python
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+x = np.arange(0, math.pi*2, 0.05)
+y = np.sin(x)
 fig = plt.figure()
-ax = fig.add_axes([0,0,1,1])
-ax.spines['bottom'].set_color('blue')
+ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+
+ax.spines['bottom'].set_color('green')
+ax.spines['bottom'].set_linewidth(4)
 ax.spines['left'].set_color('red')
-ax.spines['left'].set_linewidth(2)
+ax.spines['left'].set_linewidth(4)
 ax.spines['right'].set_color(None)
 ax.spines['top'].set_color(None)
-ax.plot([1,2,3,4,5])
+ax.plot(x, y)
 plt.show()
-
 ```
-  
+![image](https://github.com/user-attachments/assets/c5d94b64-f613-4a34-8b69-40bcc039c71b)
+ 
   - **Setting Limits**
   
 ```python
@@ -945,8 +968,9 @@ a1.set_title('exp')
 a1.set_ylim(0,10000)
 a1.set_xlim(0,10)
 plt.show()
-
 ``` 
+![image](https://github.com/user-attachments/assets/27105b85-affa-4c71-913b-980ec147b125)
+
 
   - **Setting Ticks and Tick Labels**
   
@@ -966,8 +990,9 @@ ax.set_xticks([0,2,4,6])
 ax.set_xticklabels(['zero','two','four','six'])
 ax.set_yticks([-1,0,1])
 plt.show()
-
 ```
+![image](https://github.com/user-attachments/assets/2321a699-64e8-413a-8ac0-40c48f35df2c)
+
 
   - **Twin Axes**
   
@@ -986,8 +1011,8 @@ a2.plot(x, np.log(x),'ro-')
 a2.set_ylabel('log')
 fig.legend(labels = ('exp','log'),loc='upper left')
 plt.show()
-
 ``` 
+![image](https://github.com/user-attachments/assets/3c10ca50-9078-40ba-84bf-346f1102756c)
   
   - **Contour Plot**
 
@@ -1002,5 +1027,5 @@ Z = np.sqrt(X**2 + Y**2)
 
 plt.contour(X, Y, Z)
 plt.show()
-
 ```
+![image](https://github.com/user-attachments/assets/5bfa7d44-75db-45bc-b277-3c3a399020be)
