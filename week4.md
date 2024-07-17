@@ -708,5 +708,299 @@ plt.show()
      
 ## Day 27
 
+- ### np.random.normal()
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+dataSet = np.random.normal(100, 25, 200)
+print(dataSet)
+```
+The line of code np.random.normal(100, 25, 200) uses the numpy library to generate
+random numbers that follow a normal (Gaussian) distribution. Let's break down the parameters
+and the overall meaning of the code:
+  - **np.random.normal:** This function generates random samples from a normal (Gaussian) distribution.
+  - **Parameters:**
+     `100:` This is the mean (average) of the distribution.
+     `25:` This is the standard deviation of the distribution, which measures the spread of the data around the mean.
+     `200:` This specifies the number of random samples to generate.
+
+A normal distribution is a bell-shaped distribution that is symmetric around its mean. Most of
+the data points lie close to the mean, and the probability of data points decreases as you move
+further from the mean. The spread of the data is determined by the standard deviation:
+  - A smaller standard deviation means the data points are closer to the mean.
+  - A larger standard deviation means the data points are more spread out.
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+dataSet = np.random.normal(100, 25, 200)
+print(dataSet)
+
+figure = plt.figure(figsize =(10, 8))
+# Figure will be 10 inches wide and 8 inches tall.
+plt.boxplot(dataSet)
+plt.show()
+```
+
+- ### Multiple Box Plots
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+dataSet1 = np.random.normal(100, 10, 220)
+dataSet2 = np.random.normal(80, 20, 200)
+dataSet3 = np.random.normal(60, 35, 220)
+dataSet4 = np.random.normal(50, 40, 200)
+dataSet = [dataSet1, dataSet2, dataSet3, dataSet4]
+
+figure = plt.figure(figsize =(10, 7))
+ax = figure.add_axes([0, 0, 1, 1])
+bp = ax.boxplot(dataSet)
+plt.show()
+```
+- ### Styling Components of Box Plot
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# These lines generate four datasets of random numbers drawn from normal distributions with different means and standard deviations
+dataSet1 = np.random.normal(100, 10, 220)
+dataSet2 = np.random.normal(80, 20, 200)
+dataSet3 = np.random.normal(60, 35, 220)
+dataSet4 = np.random.normal(50, 40, 200)
+
+# This line combines the four datasets into a single list dataSet.
+dataSet = [dataSet1, dataSet2, dataSet3, dataSet4]
+
+# This line creates a new figure for the plot with a specified size of 10 inches by 7 inches. The figure object is stored in the variable figure
+figure = plt.figure(figsize =(10, 7))
+
+# This line adds a subplot to the figure. The argument 111 means that the figure has one row, one column, and this subplot is the first (and only) subplot.
+ax = figure.add_subplot(111)
+bp = ax.boxplot(dataSet, patch_artist = True,notch ='True', vert = 0)
+
+colors = ['#00FF00','#0F00FF', '#F00FF0','#FFFF0F']
+for patch, color in zip(bp['boxes'], colors):
+  patch.set_facecolor(color)
+
+for whisker in bp['whiskers']:
+  whisker.set(color ='#8E008B',linewidth = 1.4,linestyle =":")
+
+for cap in bp['caps']:
+  cap.set(color ='#8E008B',linewidth = 2.1)
+
+for median in bp['medians']:
+  median.set(color ='blue',linewidth = 3)
+
+for flier in bp['fliers']:
+  flier.set(marker ='D',color ='#d7298c',alpha = 0.6)
+
+ax.set_yticklabels(['dataSet1', 'dataSet2','dataSet3', 'dataSet4'])
+plt.title("Customized box plot using attributes")
+ax.get_xaxis().tick_bottom()
+ax.get_yaxis().tick_left()
+plt.show()
+```
 
 ## Day 28
+
+- ### Matplotlib - Object-oriented Interface with the Help Of Figure Classes
+
+While it is easy to quickly generate plots with the matplotlib.pyplot module, the use of object-oriented
+approach is recommended as it gives more control and customization of your plots. Most of the
+functions are also available in the matplotlib.axes.Axes class.
+The main idea behind using the more formal object-oriented method is to create figure objects and
+then just call methods or attributes off of that object. This approach helps better in dealing with a
+canvas that has multiple plots on it.
+
+```python
+from matplotlib import pyplot as plt
+import numpy as np
+import math
+
+x = np.arange(0, math.pi*2, 0.05)
+y = np.sin(x)
+
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+ax.plot(x,y)
+ax.set_title("sine wave")
+ax.set_xlabel('angle')
+ax.set_ylabel('sine')
+plt.show()
+```
+
+- ### Adding and Customizing Axes
+
+```python
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+ax.set_title("Title")
+ax.set_xlabel("X-axis")
+ax.set_ylabel("Y-axis")
+
+```
+
+- ### Multiplots in Matplotlib
+  - **Using subplot**
+ 
+```python
+import matplotlib.pyplot as plt
+
+plt.subplot(211)
+plt.plot(range(12))
+plt.subplot(212, facecolor='y')
+plt.plot(range(12))
+
+```
+
+  - **Using add_subplot**
+
+```python
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+ax1.plot([1,2,3])
+ax2 = fig.add_subplot(221, facecolor='y')
+ax2.plot([1,2,3])
+
+```
+
+  - **Using subplots**
+
+ ```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig, a = plt.subplots(2,2)
+x = np.arange(1,5)
+a[0][0].plot(x, x*x)
+a[0][0].set_title('square')
+a[0][1].plot(x, np.sqrt(x))
+a[0][1].set_title('square root')
+a[1][0].plot(x, np.exp(x))
+a[1][0].set_title('exp')
+a[1][1].plot(x, np.log10(x))
+a[1][1].set_title('log')
+plt.show()
+
+```
+
+- ### Formatting Axes
+  - **Logarithmic Scale and Label Padding**
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig, axes = plt.subplots(1, 2, figsize=(10,4))
+x = np.arange(1,5)
+
+axes[0].plot(x, np.exp(x))
+axes[0].plot(x, x**2)
+axes[0].set_title("Normal scale")
+axes[0].set_xlabel("x axis")
+axes[0].set_ylabel("y axis")
+axes[0].xaxis.labelpad = 10
+
+axes[1].plot(x, np.exp(x))
+axes[1].plot(x, x**2)
+axes[1].set_yscale("log")
+axes[1].set_title("Logarithmic scale (y)")
+axes[1].set_xlabel("x axis")
+axes[1].set_ylabel("y axis")
+
+plt.show()
+
+```
+  
+  - **Customizing Spines**
+
+```python
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+ax.spines['bottom'].set_color('blue')
+ax.spines['left'].set_color('red')
+ax.spines['left'].set_linewidth(2)
+ax.spines['right'].set_color(None)
+ax.spines['top'].set_color(None)
+ax.plot([1,2,3,4,5])
+plt.show()
+
+```
+  
+  - **Setting Limits**
+  
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure()
+a1 = fig.add_axes([0,0,1,1])
+x = np.arange(1,10)
+a1.plot(x, np.exp(x),'r')
+a1.set_title('exp')
+a1.set_ylim(0,10000)
+a1.set_xlim(0,10)
+plt.show()
+
+``` 
+
+  - **Setting Ticks and Tick Labels**
+  
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+x = np.arange(0, math.pi*2, 0.05)
+fig = plt.figure()
+ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
+y = np.sin(x)
+ax.plot(x, y)
+ax.set_xlabel('angle')
+ax.set_title('sine')
+ax.set_xticks([0,2,4,6])
+ax.set_xticklabels(['zero','two','four','six'])
+ax.set_yticks([-1,0,1])
+plt.show()
+
+```
+
+  - **Twin Axes**
+  
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure()
+a1 = fig.add_axes([0,0,1,1])
+x = np.arange(1,11)
+a1.plot(x,np.exp(x))
+a1.set_ylabel('exp')
+
+a2 = a1.twinx()
+a2.plot(x, np.log(x),'ro-')
+a2.set_ylabel('log')
+fig.legend(labels = ('exp','log'),loc='upper left')
+plt.show()
+
+``` 
+  
+  - **Contour Plot**
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+xlist = np.linspace(-3.0, 3.0, 100)
+ylist = np.linspace(-3.0, 3.0, 100)
+X, Y = np.meshgrid(xlist, ylist)
+Z = np.sqrt(X**2 + Y**2)
+
+plt.contour(X, Y, Z)
+plt.show()
+
+```
