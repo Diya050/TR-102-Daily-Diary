@@ -696,19 +696,446 @@ print(first)
 ## Day 20
 
 - ### Set index
+ 
+```python
+import pandas as pd
+
+info = pd.DataFrame({'Name': ['Parker', 'Terry', 'Smith', 'William'],
+'Year': [2011, 2009, 2014, 2010],
+'Leaves': [10, 15, 9, 4]})
+print(info)
+'''
+      Name  Year  Leaves
+0   Parker  2011      10
+1    Terry  2009      15
+2    Smith  2014       9
+3  William  2010       4
+'''
+
+print(info.set_index('Name'))
+'''
+         Year  Leaves
+Name                 
+Parker   2011      10
+Terry    2009      15
+Smith    2014       9
+William  2010       4
+'''
+
+print(info.set_index(['Year', 'Name']))
+'''
+              Leaves
+Year Name           
+2011 Parker       10
+2009 Terry        15
+2014 Smith         9
+2010 William       4
+'''
+
+print(info.set_index([pd.Index([1, 2, 3, 4]), 'Year']))
+'''
+           Name  Leaves
+  Year                 
+1 2011   Parker      10
+2 2009    Terry      15
+3 2014    Smith       9
+4 2010  William       4
+'''
+
+a = pd.Series([1, 2, 3, 4])
+print(info.set_index([a, a**2]))
+'''
+         Name  Year  Leaves
+1 1    Parker  2011      10
+2 4     Terry  2009      15
+3 9     Smith  2014       9
+4 16  William  2010       4
+'''
+```
 - ### Multiple Index
+
+```python
+import pandas as pd
+
+arrays = [['it', 'it', 'of', 'of', 'for', 'for', 'then', 'then'],
+['one', 'two', 'one', 'two', 'one', 'two', 'one', 'two']]
+tuples = list(zip(*arrays))
+index = pd.MultiIndex.from_tuples(tuples, names=['first', 'second'])
+print(index)
+'''
+MultiIndex([(  'it', 'one'),
+            (  'it', 'two'),
+            (  'of', 'one'),
+            (  'of', 'two'),
+            ( 'for', 'one'),
+            ( 'for', 'two'),
+            ('then', 'one'),
+            ('then', 'two')],
+           names=['first', 'second'])
+'''
+```
+
 - ### Datetime Index
+
+```python
+import pandas as pd
+
+# Reading a CSV file and parsing dates
+df = pd.read_csv("aapl.csv", parse_dates=["Date"], index_col="Date")
+print(df.head(2))
+# Output: (first two rows of the DataFrame)
+#                Open      High       Low     Close      Volume
+# Date                                                       
+# 2017-01-03  115.800003  116.330002  114.760002  116.150002  28781800
+# 2017-01-04  115.849998  116.510002  115.750000  116.019997  21118100
+
+print(df.index)
+# Output: DatetimeIndex([...], dtype='datetime64[ns]', name='Date', freq=None)
+
+# Selecting data for specific dates or ranges
+print(df['2017-06-30'])
+# Output: (row data for 2017-06-30)
+
+print(df["2017-01"])
+# Output: (rows data for January 2017)
+
+print(df['2017-06'].head())
+# Output: (first few rows of June 2017)
+
+print(df['2017-06'].Close.mean())
+# Output: (mean closing value for June 2017)
+
+print(df['2017'].head(2))
+# Output: (first two rows of 2017 data)
+
+print(df['2017-01-08':'2017-01-03'])
+# Output: (data between January 3 and January 8, 2017)
+
+```
 - ### DataFrame.pivot()
+
+```python
+import pandas as pd
+
+# Creating a DataFrame for pivoting
+data = {
+    'Date': ['2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04'],
+    'Type': ['A', 'B', 'A', 'B'],
+    'Value': [10, 20, 30, 40]
+}
+df = pd.DataFrame(data)
+print(df)
+# Output:
+#          Date Type  Value
+# 0  2021-01-01    A     10
+# 1  2021-01-02    B     20
+# 2  2021-01-03    A     30
+# 3  2021-01-04    B     40
+
+# Pivoting the DataFrame
+pivoted_df = df.pivot(index='Date', columns='Type', values='Value')
+print(pivoted_df)
+# Output:
+# Type           A     B
+# Date                  
+# 2021-01-01  10.0   NaN
+# 2021-01-02   NaN  20.0
+# 2021-01-03  30.0   NaN
+# 2021-01-04   NaN  40.0
+
+```
+
 - ### Pandas.pivot_table()
+
+```python
+import pandas as pd
+
+# Creating a DataFrame for pivot_table
+data = {
+    'A': ['foo', 'foo', 'foo', 'foo', 'foo',
+          'bar', 'bar', 'bar', 'bar'],
+    'B': ['one', 'one', 'one', 'two', 'two',
+          'one', 'one', 'two', 'two'],
+    'C': ['small', 'large', 'large', 'small',
+          'small', 'small', 'large', 'small',
+          'large'],
+    'D': [1, 2, 2, 3, 3, 4, 5, 6, 7],
+    'E': [2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5]
+}
+df = pd.DataFrame(data)
+print(df)
+# Output: (DataFrame content)
+
+# Creating a pivot table
+pivot_table_df = pd.pivot_table(df, values='D', index=['A', 'B'],
+                                columns=['C'], aggfunc='sum')
+print(pivot_table_df)
+# Output:
+# C         large  small
+# A   B                    
+# bar one    5.0    4.0
+#     two    7.0    6.0
+# foo one    4.0    1.0
+#     two    NaN    6.0
+
+```
+
 - ### fill_value Parameter
+
+```python
+import pandas as pd
+
+# Creating a DataFrame
+df = pd.DataFrame({'A': ['foo', 'bar', 'foo', 'bar'],
+                   'B': ['one', 'one', 'two', 'two'],
+                   'C': ['small', 'large', 'large', 'small'],
+                   'D': [1, 2, 3, 4]})
+print(df)
+# Output: (DataFrame content)
+
+# Creating a pivot table with fill_value
+pivot_table_df = pd.pivot_table(df, values='D', index=['A', 'B'],
+                                columns=['C'], aggfunc='sum', fill_value=0)
+print(pivot_table_df)
+# Output:
+# C         large  small
+# A   B                    
+# bar one    2      0
+#     two    0      4
+# foo one    0      1
+#     two    3      0
+
+```
+
 - ### Pandas crosstab()
+
+```python
+import pandas as pd
+
+# Creating data for crosstab
+a = [1, 2, 2, 2, 3, 3]
+b = [1, 1, 2, 2, 2, 2]
+c = [1, 2, 2, 1, 1, 1]
+
+# Creating a crosstab
+crosstab_df = pd.crosstab(index=[a, b], columns=c)
+print(crosstab_df)
+# Output:
+# col_0  1  2
+# row_0        
+# 1 1    1  0
+# 2 1    0  1
+#   2    1  1
+# 3 2    2  0
+
+```
+
 
 ## Day 21
 
 - ### Pandas Series.str.slice()
+
+```python
+import pandas as pd
+
+# Creating a Series
+s = pd.Series(['abcdef', 'ghijkl', 'mnopqr', 'stuvwx'])
+print(s)
+# Output:
+# 0    abcdef
+# 1    ghijkl
+# 2    mnopqr
+# 3    stuvwx
+# dtype: object
+
+# Using str.slice() to get substrings
+sliced_s = s.str.slice(1, 4)
+print(sliced_s)
+# Output:
+# 0    bcd
+# 1    hij
+# 2    nop
+# 3    tuv
+# dtype: object
+
+```
+
 - ### Adding new column to existing DataFrame in Pandas: insert()
+
+```python
+import pandas as pd
+
+# Creating a DataFrame
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+print(df)
+# Output:
+#    A  B
+# 0  1  4
+# 1  2  5
+# 2  3  6
+
+# Adding a new column at a specific location
+df.insert(1, 'C', [7, 8, 9])
+print(df)
+# Output:
+#    A  C  B
+# 0  1  7  4
+# 1  2  8  5
+# 2  3  9  6
+
+```
+
 - ### Pandas Add Column to DataFrame using a Dictionary
+
+```python
+import pandas as pd
+
+# Creating a DataFrame
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+print(df)
+# Output:
+#    A  B
+# 0  1  4
+# 1  2  5
+# 2  3  6
+
+# Adding a new column using a dictionary
+new_data = {'C': [7, 8, 9]}
+df = df.assign(**new_data)
+print(df)
+# Output:
+#    A  B  C
+# 0  1  4  7
+# 1  2  5  8
+# 2  3  6  9
+
+```
+
 - ### Adding More than One columns in Existing Dataframe
+
+```python
+import pandas as pd
+
+# Creating a DataFrame
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+print(df)
+# Output:
+#    A  B
+# 0  1  4
+# 1  2  5
+# 2  3  6
+
+# Adding multiple columns
+df[['C', 'D']] = pd.DataFrame({'C': [7, 8, 9], 'D': [10, 11, 12]})
+print(df)
+# Output:
+#    A  B  C   D
+# 0  1  4  7  10
+# 1  2  5  8  11
+# 2  3  6  9  12
+
+```
+
 - ### Pandas DataFrame.truncate
+
+```python
+import pandas as pd
+
+# Creating a DataFrame with date range index
+df = pd.DataFrame({'A': range(10)}, index=pd.date_range('2020-01-01', periods=10))
+print(df)
+# Output: (DataFrame content with date index)
+
+# Truncating the DataFrame
+truncated_df = df.truncate(before='2020-01-03', after='2020-01-06')
+print(truncated_df)
+# Output:
+#             A
+# 2020-01-03  2
+# 2020-01-04  3
+# 2020-01-05  4
+# 2020-01-06  5
+
+```
+
 - ### Delete rows/columns from DataFrame using Pandas.drop()
+
+```python
+import pandas as pd
+
+data = pd.DataFrame({'A': ['foo', 'bar', 'baz', 'qux', 'quux', 'corge'],
+                     'B': [0, 1, 2, 3, 4, 5],
+                     'C': [10.0, 11.1, 12.2, 13.3, 14.4, 15.5]})
+
+# Delete a column
+print(data.drop(columns=['B']))
+'''
+       A     C
+0    foo  10.0
+1    bar  11.1
+2    baz  12.2
+3    qux  13.3
+4   quux  14.4
+5  corge  15.5
+'''
+
+# Delete a row
+print(data.drop(index=[1, 3]))
+'''
+       A  B     C
+0    foo  0  10.0
+2    baz  2  12.2
+4   quux  4  14.4
+5  corge  5  15.5
+'''
+
+```
+
 - ### Pandas Iterate Over Columns of DataFrame
+
+```python
+import pandas as pd
+
+data = pd.DataFrame({'A': ['foo', 'bar', 'baz', 'qux', 'quux', 'corge'],
+                     'B': [0, 1, 2, 3, 4, 5],
+                     'C': [10.0, 11.1, 12.2, 13.3, 14.4, 15.5]})
+
+# Iterate over column names
+for column in data:
+    print(column)
+    
+# Iterate over column names and data
+for column_name, column_data in data.items():
+    print(f"Column name: {column_name}")
+    print(column_data)
+'''
+A
+B
+C
+Column name: A
+0      foo
+1      bar
+2      baz
+3      qux
+4     quux
+5    corge
+Name: A, dtype: object
+Column name: B
+0    0
+1    1
+2    2
+3    3
+4    4
+5    5
+Name: B, dtype: int64
+Column name: C
+0    10.0
+1    11.1
+2    12.2
+3    13.3
+4    14.4
+5    15.5
+Name: C, dtype: float64
+'''
+
+```
