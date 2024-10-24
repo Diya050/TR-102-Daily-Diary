@@ -39,3 +39,4 @@ This is my daily diary for 4 weeks industrial/institutional training TR-102 in D
      - [Day 26](https://diya050.github.io/TR-102-Daily-Diary/week4.html#day-26)
      - [Day 27](https://diya050.github.io/TR-102-Daily-Diary/week4.html#day-27)
      - [Day 28](https://diya050.github.io/TR-102-Daily-Diary/week4.html#day-28)
+- [Capstone Project: Time Series Analysis of Airline Passenger Data](https://github.com/Diya050/Airline_Passenger_Analysis/)
